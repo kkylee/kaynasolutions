@@ -1,0 +1,106 @@
+export const articles = [
+  {
+    slug: 'five-processes-to-automate-first',
+    title: 'Five business processes a growing SME can automate first',
+    category: 'Business Automation',
+    image: 'article-automation',
+    readTime: '2 min read',
+    excerpt:
+      'Automation rarely starts with software. It starts with a list of the work your team repeats every week — and a few clear candidates.',
+    body: [
+      'Automation gets discussed as if it starts with software. It usually starts with a list. If you write down the work your team repeats every week — the same approvals, the same re-encoding, the same report — you will find a handful of candidates, and most of them share one feature: a handoff between two people or two tools.',
+      'Leave and overtime approval is often the easiest first win. A request filed in a form, routed to the right approver, and recorded with a timestamp removes the search through chat history. It also produces something you did not have before: a reliable record of how long approvals actually take.',
+      'Attendance to payroll is the second. In many businesses the same hours are read from a biometric device, corrected in a spreadsheet, and typed again into payroll. Connecting those steps reduces encoding errors and shortens the cutoff. The exception list matters more than the automation itself, because exceptions are where payroll mistakes come from.',
+      'Purchase requests are the third. A request that carries its budget line, supplier, and approval history is easier to audit than an email chain. Even a simple amount-based routing rule removes the “who approved this?” conversation.',
+      'Customer follow-ups and month-end reporting complete the common set. Neither needs artificial intelligence. Both need a record that is written once and read by everyone who depends on it.',
+      'Choose the first process by counting, not by enthusiasm. Pick the one with the most handoffs per week and the clearest cost of a mistake. Run it for one team or one branch, compare before and after, then decide whether to extend it. Automation that starts small and is measured is far easier to defend than a company-wide rollout nobody can evaluate.',
+    ],
+  },
+  {
+    slug: 'when-custom-software-is-worth-it',
+    title: 'When custom software is worth it, and when it is not',
+    category: 'Software Development',
+    image: 'article-custom-software',
+    readTime: '2 min read',
+    excerpt:
+      'The useful question is not custom versus ready-made. It is which parts of your business are genuinely yours, and which are standard enough to buy.',
+    body: [
+      'The useful question is not whether custom software is better than a ready-made tool. It is which parts of your business are genuinely yours, and which are standard enough that someone else has already solved them.',
+      'Standard accounting, email, and basic payroll are usually better bought. The vendor carries the compliance burden, the updates, and the support desk. Building those yourself is a way to spend money on work that adds no advantage.',
+      'Custom software earns its cost when the process is the advantage, or when the process is unusual enough that every ready tool requires a workaround. If your staff spend their day reconciling three systems, or if the business runs on exceptions that no template accommodates, a tailored system can remove real friction.',
+      'It also brings obligations. Someone has to own the code, the documentation, and the upgrades. A custom system is not finished at launch; it is maintained. Budget for that before you start, and avoid building what a configuration change could solve.',
+      'The middle path is often the right one: keep the standard tools, and integrate them so information moves without being retyped. That gives you most of the benefit of a single system without replacing software that already works.',
+      'Three questions help. Does this process differentiate us? How many hours a week does the workaround cost? Can we maintain what we build? If the answers point to a standard process, buy. If they point to something only your business does, build it — and plan for the years after launch, not just the first release.',
+    ],
+  },
+  {
+    slug: 'why-spreadsheets-stop-working',
+    title: 'Why spreadsheets stop working at a certain size',
+    category: 'Business Operations',
+    image: 'article-spreadsheets',
+    readTime: '2 min read',
+    excerpt:
+      'A spreadsheet stays useful for a long time. It becomes a problem at a specific point: when more than one person depends on it and more than one person edits it.',
+    body: [
+      'A spreadsheet is one of the most useful business tools ever made, and it stays useful for a long time. It becomes a problem at a specific point: when more than one person depends on it and more than one person edits it.',
+      'That is when versions multiply. Someone emails a copy, someone edits the copy, and the original keeps moving. By the end of the month there are three files with similar names and no way to tell which one payroll used.',
+      'There is also the knowledge problem. The formulas were built by one person, often years ago, and everyone else treats the file as a black box. When that person leaves, the business inherits a system nobody can safely change.',
+      'Spreadsheets also lack the small protections a growing business needs: permissions per role, a record of who changed what, validation that stops a date from being typed into a number field, and a way to work from two branches without overwriting each other.',
+      'The warning signs are easy to recognise once you look for them. You re-enter the same data in more than one place. Month-end means rebuilding the same report. Answers arrive by asking a specific person rather than opening a system. A count takes a weekend instead of a morning.',
+      'None of this means abandoning spreadsheets. They remain excellent for analysis, modelling, and one-off questions. The change is to stop using them as the place where records live. Move the records to a system with permissions and history, then export to a spreadsheet when you want to think with the numbers.',
+    ],
+  },
+  {
+    slug: 'integrations-reduce-duplicate-encoding',
+    title: 'How system integrations reduce duplicate encoding',
+    category: 'Technology Guides',
+    image: 'article-integrations',
+    readTime: '2 min read',
+    excerpt:
+      'Duplicate encoding is easy to dismiss because each instance takes seconds. Multiply it across a month and it becomes a real cost — with errors attached.',
+    body: [
+      'Duplicate encoding is easy to dismiss because each instance takes seconds. Multiply it by every order, every new employee, every attendance correction, and the seconds become a part of the week nobody budgets for — along with the errors that come with typing the same thing twice.',
+      'An integration, plainly described, is an arrangement where one system sends a record to another without a person copying it. The attendance device reports hours; payroll receives them. A sale closes in the CRM; accounting receives an invoice. The detail is technical, the purpose is not. The cost of the alternative rarely appears on a budget line, which is why it persists.',
+      'The usual starting points are the pairs that already share data every week: attendance to payroll, sales to accounting, online orders to inventory, and customer records between the shop system and the CRM.',
+      'Integrations work when each type of record has one owner. If two systems both claim to be the source of truth for a customer, the integration will faithfully copy the disagreement. Decide which system owns each record, then let the others receive.',
+      'They also need failure handling. Connections drop, credentials expire, and a field that used to be optional becomes required. A silent failure is worse than a manual process because nobody knows to check. Good integrations report their own errors.',
+      'Finally, integration does not repair a broken process. It makes the process faster. If approvals are unclear or stock counts are wrong at the source, connecting systems will distribute the confusion more efficiently. Fix the process first, then connect it.',
+    ],
+  },
+  {
+    slug: 'how-to-start-digitising-operations',
+    title: 'A practical way to start digitising your operations',
+    category: 'Digital Transformation',
+    image: 'article-digitise',
+    readTime: '2 min read',
+    excerpt:
+      'Digitising is usually described as a series of purchases. In practice the purchases are the last step, and the work before them decides the result.',
+    body: [
+      'Digitising a business is usually described as a series of purchases. In practice the purchases are the last step. The work that decides whether the effort succeeds happens before any software is chosen.',
+      'Start by writing down the process as it actually runs, including the workarounds. Not the version in the manual — the version where a stock adjustment happens in a chat message and the real count lives in a notebook. The workarounds are where the time goes.',
+      'Then find the bottleneck with the most handoffs. A process that passes through four people and three tools before a customer gets an answer is a candidate. A process that one person completes in ten minutes is not, even if it looks old-fashioned.',
+      'Fix the process before automating it. Automation applied to a muddled approval chain produces faster confusion. Removing a step, or deciding who is allowed to approve what, is free and often removes most of the delay.',
+      'Run a pilot with one team or one branch. Measure the thing you care about before and after — hours spent, errors found, days to close — using numbers you can actually collect. A pilot that cannot be measured becomes an opinion.',
+      'Train the people who will use it, and write the procedure down in plain language. Adoption fails more often from unclear expectations than from missing features. Then extend to the next branch only when the first one is genuinely working.',
+      'The temptation is a single large replacement that promises to fix everything at once. That approach makes every problem appear on the same day and leaves no working system to fall back on. A sequence of small, measured steps is slower to announce and faster to finish.',
+    ],
+  },
+  {
+    slug: 'what-an-employee-system-changes',
+    title: 'What a better employee management system actually changes',
+    category: 'SME Technology Tips',
+    image: 'article-hr',
+    readTime: '2 min read',
+    excerpt:
+      'HR administration grows quietly until one cutoff week consumes the whole department. A single employee record changes more than it looks.',
+    body: [
+      'HR administration grows quietly. One spreadsheet for attendance, another for leave balances, a folder of scanned documents, and a cutoff week that everyone dreads. None of it looks broken until the business has more than one branch or more than fifty employees.',
+      'A better employee system begins with a single record per person. When a new hire joins, the details are entered once, and attendance, leave, and payroll read from that record. The immediate change is not impressive to look at; it is that nobody maintains three versions of the same employee.',
+      'The second change is self-service. Employees file leave and check balances themselves, which removes the interruptions that consume an HR day. Managers see what is waiting on them, and the approval trail exists without anyone reconstructing it from chat.',
+      'The third is exceptions. Payroll errors usually come from a small number of cases: a missing time entry, overlapping leave, unapproved overtime. A system that lists those cases before the cutoff turns a stressful review into a short checklist.',
+      'Management gains something too: headcount, absence, and overtime by team, available without asking for a special report. That is not analytics for its own sake. It is the information needed to decide whether a team is overloaded or a branch is understaffed.',
+      'What an employee system does not fix is policy. If leave rules are unclear or approvals depend on who is in the office, software will only record the confusion. Write the rules down first, then let the system enforce them.',
+      'A practical first step is smaller than a full HR platform: attendance import, leave requests, and one reliable employee record. Add payroll summaries and reports once those three are used consistently.',
+    ],
+  },
+]
