@@ -75,7 +75,7 @@ const year = new Date().getFullYear()
         class="container-page flex flex-col gap-2 py-6 text-xs leading-relaxed text-slate-ink sm:flex-row sm:items-center sm:justify-between"
       >
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
-        <p>Demonstration projects and sample articles are illustrative, not client work.</p>
+        <p>Demonstration projects and sample articles are illustrative, not real engagements.</p>
       </div>
     </div>
   </footer>
