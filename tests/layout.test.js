@@ -34,7 +34,7 @@ afterEach(() => {
 describe('Wordmark', () => {
   it('shows the brand name next to the mark', () => {
     const wrapper = mount(Wordmark)
-    expect(wrapper.text()).toContain('Solvanta')
+    expect(wrapper.text()).toContain(site.name)
     expect(wrapper.text()).toContain('Digital')
     expect(wrapper.find('svg').exists()).toBe(true)
   })

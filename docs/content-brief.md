@@ -1,4 +1,4 @@
-# Solvanta Digital — Content Brief
+# Sol Digital — Content Brief
 
 Source of truth for names, structure, and voice. The client's original specification fixed these lists; everything else is written fresh for this build.
 

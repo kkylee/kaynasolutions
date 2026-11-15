@@ -1,12 +1,12 @@
-export const SITE_URL = 'https://solvantadigital.com'
+export const SITE_URL = 'https://soldigital.com'
 
 export const site = {
-  name: 'Solvanta Digital',
+  name: 'Sol Digital',
   tagline: 'Better business starts with better systems.',
   positioning: 'Big-business capabilities, practical solutions for growing businesses.',
   description:
-    'Solvanta Digital helps Philippine businesses simplify operations with practical software, automation, and connected systems.',
-  email: 'hello@solvantadigital.com',
+    'Sol Digital helps Philippine businesses simplify operations with practical software, automation, and connected systems.',
+  email: 'hello@soldigital.com',
   phone: '+63 900 000 0000',
   location: 'Philippines',
   isPlaceholder: true,

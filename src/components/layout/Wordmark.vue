@@ -27,7 +27,7 @@ defineProps({
       class="font-display text-lg leading-none tracking-tight"
       :class="tone === 'light' ? 'text-white' : 'text-navy'"
     >
-      <span class="font-semibold">Solvanta</span><span class="font-normal opacity-70"> Digital</span>
+      <span class="font-semibold">Sol</span><span class="font-normal opacity-70"> Digital</span>
     </span>
   </span>
 </template>

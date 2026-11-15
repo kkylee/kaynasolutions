@@ -41,7 +41,7 @@ const words = (text) => text.trim().split(/\s+/).filter(Boolean).length
 
 describe('site', () => {
   it('uses an absolute https origin', () => {
-    expect(SITE_URL).toBe('https://solvantadigital.com')
+    expect(SITE_URL).toBe('https://soldigital.com')
   })
 
   it('has the seven navigation entries in order', () => {

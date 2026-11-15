@@ -78,7 +78,7 @@ export function seo() {
   let outDir = 'dist'
 
   return {
-    name: 'solvanta-seo',
+    name: 'sol-digital-seo',
     configResolved(config) {
       outDir = config.build.outDir
     },

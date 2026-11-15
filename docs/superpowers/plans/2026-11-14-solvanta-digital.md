@@ -1,22 +1,22 @@
-# Solvanta Digital Website Implementation Plan
+# Sol Digital Website Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build and verify a seven-page static corporate website for Solvanta Digital using Vue 3, Vite and Tailwind CSS, deployable to Cloudflare Pages.
+**Goal:** Build and verify a seven-page static corporate website for Sol Digital using Vue 3, Vite and Tailwind CSS, deployable to Cloudflare Pages.
 
 **Architecture:** Multi-page Vite build — seven real HTML entries, no Vue Router. A build plugin injects per-page `<head>` metadata and generates `sitemap.xml` from one `src/data/pages.js` module. Content lives in `src/data/*.js`; presentation in shared components; each page is a Vue page component mounted by its own entry script.
 
 **Tech Stack:** Vue 3, Vite 7, Tailwind CSS 4 (`@tailwindcss/vite`), lucide-vue-next, self-hosted Manrope/Inter via Fontsource, Vitest + @vue/test-utils (jsdom), `sharp` for image conversion, `node-html-parser` for build-output assertions.
 
-**Spec:** `docs/superpowers/specs/2026-11-14-solvanta-digital-design.md` (design) and `docs/content-brief.md` (fixed names, voice rules).
+**Spec:** `docs/superpowers/specs/2026-11-14-sol-digital-design.md` (design) and `docs/content-brief.md` (fixed names, voice rules).
 
 ## Global Constraints
 
-- Headline brand facts, copied verbatim: **Solvanta Digital**; tagline **"Better business starts with better systems."**; positioning **"Big-business capabilities, practical solutions for growing businesses."**
+- Headline brand facts, copied verbatim: **Sol Digital**; tagline **"Better business starts with better systems."**; positioning **"Big-business capabilities, practical solutions for growing businesses."**
 - Colours: navy `#101D35`, blue `#2563EB`, teal `#14B8A6`, white `#FFFFFF`, light gray `#F8FAFC`, slate `#475569`.
 - Fonts: Manrope headings, Inter body. No Google Fonts CDN.
 - URLs: trailing slash, seven total — `/`, `/services/`, `/solutions/`, `/about/`, `/portfolio/`, `/insights/`, `/contact/`.
-- `SITE_URL = 'https://solvantadigital.com'` is defined once in `src/data/site.js`; nothing else hardcodes the domain.
+- `SITE_URL = 'https://soldigital.com'` is defined once in `src/data/site.js`; nothing else hardcodes the domain.
 - No backend, CMS, database, API, analytics, or cookie banner. No router.
 - Forbidden copy: superlatives ("best", "cheapest", "world-class"), guaranteed results, invented history/team size/awards/certifications/clients/partnerships/years of experience, exclamation marks, emoji.
 - Portfolio items carry a visible "Demonstration project" label; Insights carries a "sample content" note.
@@ -60,7 +60,7 @@ src/components/contact/ContactForm.vue
 src/pages/{Home,Services,Solutions,About,Portfolio,Insights,Contact}.vue
 src/entries/{home,services,solutions,about,portfolio,insights,contact}.js
 tests/*.test.js
-docs/{content-brief.md,image-credits.md,solvanta-digital-source-spec.md}
+docs/{content-brief.md,image-credits.md,sol-digital-source-spec.md}
 ```
 
 ---
@@ -169,7 +169,7 @@ Run: `npx vitest run tests/data.test.js` — Expected: FAIL (module not found).
 
 - [ ] **Step 3: Write `site.js` and `pages.js` metadata**
 
-Use `docs/content-brief.md` for voice. Placeholders: `hello@solvantadigital.com`, `+63 900 000 0000`, socials Facebook/LinkedIn with `href: '#'` and `isPlaceholder` copy in `site.js`. Nav labels: Home, Services, Solutions, About, Portfolio, Insights, Contact.
+Use `docs/content-brief.md` for voice. Placeholders: `hello@soldigital.com`, `+63 900 000 0000`, socials Facebook/LinkedIn with `href: '#'` and `isPlaceholder` copy in `site.js`. Nav labels: Home, Services, Solutions, About, Portfolio, Insights, Contact.
 
 - [ ] **Step 4: Write the five content modules**
 
@@ -250,7 +250,7 @@ git add scripts src/assets src/lib docs/image-credits.md && git commit -m "feat:
 - Test: `tests/layout.test.js`
 
 **Interfaces:**
-- `Wordmark` props `{ tone?: 'dark'|'light', size?: 'sm'|'md' }` — inline SVG symbol (two interlocking rounded paths forming an S/link, 24×24, `currentColor`) plus "Solvanta" in Manrope 600 and "Digital" in 400; accessible name "Solvanta Digital"; identical geometry reused by the favicon in Task 14.
+- `Wordmark` props `{ tone?: 'dark'|'light', size?: 'sm'|'md' }` — inline SVG symbol (two interlocking rounded paths forming an S/link, 24×24, `currentColor`) plus "Sol" in Manrope 600 and "Digital" in 400; accessible name "Sol Digital"; identical geometry reused by the favicon in Task 14.
 - `SiteHeader` — wordmark link to `/`, desktop nav with `aria-current="page"` on the active item (via `currentPath()`), "Let's talk" primary button, mobile trigger `aria-expanded`/`aria-controls="mobile-nav"`.
 - `MobileNav` props `{ open }`, emits `close`; traps focus, closes on Escape, restores focus to the trigger, locks `body` scroll.
 - `SiteFooter` — brand line, tagline, nav columns, service links, marked placeholder contact details, demonstration note.

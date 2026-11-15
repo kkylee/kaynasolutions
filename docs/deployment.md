@@ -28,7 +28,7 @@ Do **not** enable a single-page-application fallback. A catch-all rewrite to `in
 ```bash
 npm ci
 npm run check
-npx wrangler pages deploy dist --project-name solvanta-digital
+npx wrangler pages deploy dist --project-name sol-digital
 ```
 
 `npm run check` must print the PASS line before uploading. The command uploads only `dist/`.
@@ -49,10 +49,10 @@ If you add third-party scripts later, revisit the `Permissions-Policy` and consi
 Pointing the real domain is the client's step and requires access to their DNS.
 
 1. In the Pages project, open **Custom domains → Set up a domain**.
-2. Enter the apex domain (for example `solvantadigital.com`) and the `www` variant.
+2. Enter the apex domain (for example `soldigital.com`) and the `www` variant.
 3. If the domain's DNS is already on Cloudflare, the required records are created automatically. Otherwise, add the CNAME or nameserver records shown.
 4. Wait for the certificate to issue, then confirm both variants redirect to one canonical host.
-5. Update `SITE_URL` in `src/data/site.js` to the chosen canonical host, run `npm run check`, and redeploy so canonicals, the sitemap, Open Graph URLs, and JSON-LD all match.
+5. Update `SITE_URL` in `src/data/site.js` to the chosen canonical host, update the `Sitemap:` line in `public/robots.txt` to the same host, run `npm run check`, and redeploy so canonicals, the sitemap, robots, Open Graph URLs, and JSON-LD all match.
 6. Regenerate the sitemap by rebuilding (`npm run build` writes it), then submit `https://your-domain/sitemap.xml` in Google Search Console.
 
 ## After every content change

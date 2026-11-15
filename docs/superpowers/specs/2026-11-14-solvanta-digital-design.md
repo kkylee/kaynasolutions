@@ -1,18 +1,18 @@
-# Solvanta Digital — Website Design
+# Sol Digital — Website Design
 
 **Date:** 2026-11-14
 **Status:** Draft for approval
-**Source spec:** Solvanta Digital Complete Website Design and Development Specification (supplied by the client)
+**Source spec:** Sol Digital Complete Website Design and Development Specification (supplied by the client)
 
 ---
 
 ## Intent
 
-Solvanta Digital needs a seven-page static marketing site that reads as an established Philippine business-technology company. The audience is Filipino SME owners and managers — retailers, traders, distributors, manufacturers, service firms, staffing agencies, family businesses, and young startups. They are not evaluating technology for its own sake; they are asking whether someone can make payroll, stock, approvals, and reporting less painful.
+Sol Digital needs a seven-page static marketing site that reads as an established Philippine business-technology company. The audience is Filipino SME owners and managers — retailers, traders, distributors, manufacturers, service firms, staffing agencies, family businesses, and young startups. They are not evaluating technology for its own sake; they are asking whether someone can make payroll, stock, approvals, and reporting less painful.
 
 The site must do three jobs at once:
 
-1. Say plainly what Solvanta does and who it is for.
+1. Say plainly what Sol Digital does and who it is for.
 2. Show the problems it solves in the reader's own language.
 3. Make starting a conversation feel low-risk.
 
@@ -116,7 +116,7 @@ Mobile navigation is a full-height panel with focus trap, Escape to close, and b
 1. **Hero** — headline "Better business starts with better systems." Supporting copy in plain English. Two CTAs (primary: Let's Talk About Your Business → `/contact/`; secondary: Explore Our Services → `/services/`). Photo-led, with the headline as dominant element; a small trust row of audience types ("Retail · Trading · Manufacturing · Services") instead of fake client logos.
 2. **Business challenges** — "Still managing your business manually?" Six concrete pain cards (manual data entry, scattered employee records, spreadsheet inventory, disconnected apps, chat-based approvals, month-end reports). Each card pairs a short scenario with "what it costs you".
 3. **Services overview** — six cards, icon + title + one-sentence outcome + link. No images inside cards; the section gets one wide supporting image.
-4. **Why Solvanta** — five differentiators laid out as an asymmetric editorial block: statement column plus supporting photo, not a five-column icon grid.
+4. **Why Sol Digital** — five differentiators laid out as an asymmetric editorial block: statement column plus supporting photo, not a five-column icon grid.
 5. **Solutions overview** — six business-outcome tiles (HR, inventory, customers, workflows, reporting, connected systems), each phrased as a problem → outcome.
 6. **Process** — Understand / Plan / Build / Support as a numbered horizontal timeline on desktop, vertical on mobile, with real deliverable descriptions.
 7. **Final CTA** — "Let's make running your business easier." Single primary action plus the no-jargon reassurance line.
@@ -234,7 +234,7 @@ A builder review flagged gaps; these are the answers, so no one has to guess dur
 
 1. **Copy source and fixed taxonomy.** The client's full written specification exists and is the source of truth; it is reproduced in `docs/content-brief.md` alongside the build plan. Fixed and not to be renamed: the six services (Custom Software Development; Business Process Automation; API & System Integrations; Business Intelligence & Analytics; Cloud Solutions & Technical Support; Technology Consulting), the six solutions (HR & Employee Management; Inventory & Operations Management; Customer & Client Management; Workflow & Approval Automation; Reporting & Business Intelligence; Connected Business Systems), the four process steps (Understand, Plan, Build, Support), the five values (Practical Innovation, Simplicity, Reliability, Collaboration, Continuous Improvement), and the contact form fields. All other prose is written fresh for this build, following the voice rules above — the spec's example sentences are directional, not final copy.
 2. **What may be asserted.** Nothing beyond the supplied positioning. No company registration, location beyond "Philippines", team size, tenure, clients, awards, certifications, or partnerships. No real client engagements exist for this build, so Portfolio is entirely demonstration work and is labelled as such throughout.
-3. **Domain and deployment.** One constant `SITE_URL` in `src/data/site.js` (default `https://solvantadigital.com`) feeds canonical, OG `url`, sitemap, robots, and JSON-LD. Deliverable is a verified production build plus deployment documentation for Cloudflare Pages; connecting the real domain, DNS, and hosting account is a client step, not part of this build.
+3. **Domain and deployment.** One constant `SITE_URL` in `src/data/site.js` (default `https://soldigital.com`) feeds canonical, OG `url`, sitemap, robots, and JSON-LD. Deliverable is a verified production build plus deployment documentation for Cloudflare Pages; connecting the real domain, DNS, and hosting account is a client step, not part of this build.
 4. **Logo.** No existing mark. This build creates an original SVG wordmark plus a geometric symbol (an interlocking "S"/link form built from two nested paths — connection and progress without circuits or robots), used in the header, favicon, and OG image. It is simple geometry, monochrome-capable, and readable at 16px.
 5. **Contact details.** Ship with clearly marked placeholders stored in `site.js`, with a launch checklist in the README. The `mailto:` handoff is implemented and tested against a placeholder address; it becomes deliverable the moment a real address is set in one file.
 6. **Demo content depth.** Projects: 150–250 words each (problem, solution, stack, what it demonstrates). Articles: 300–400 words each, rendered inline in an expandable article panel — no long-form article routes, no eighth page. Total added copy stays within the page-weight and time budget.
@@ -242,4 +242,4 @@ A builder review flagged gaps; these are the answers, so no one has to guess dur
 
 ## Acceptance criteria
 
-Mapped from the client spec: seven pages built; consistent Solvanta branding; copy addressed to Filipino SME owners; relevant licensed photography throughout; optimised responsive images; mockups used for services/solutions/portfolio; verified at 320/768/1024/1440; working nav, CTAs, mailto, mobile menu; portfolio and insights load from data modules; contact clearly marked as not yet connected to a service; per-page SEO metadata, sitemap, robots; no backend dependencies; `npm run build` succeeds; deployable to Cloudflare Pages.
+Mapped from the client spec: seven pages built; consistent Sol Digital branding; copy addressed to Filipino SME owners; relevant licensed photography throughout; optimised responsive images; mockups used for services/solutions/portfolio; verified at 320/768/1024/1440; working nav, CTAs, mailto, mobile menu; portfolio and insights load from data modules; contact clearly marked as not yet connected to a service; per-page SEO metadata, sitemap, robots; no backend dependencies; `npm run build` succeeds; deployable to Cloudflare Pages.

@@ -4,7 +4,7 @@ import sharp from 'sharp'
 import manifest from './images.manifest.json' with { type: 'json' }
 
 const outDir = path.resolve('src/assets/images')
-const cacheDir = path.join(process.env.TEMP ?? '.', 'solvanta-originals')
+const cacheDir = path.join(process.env.TEMP ?? '.', 'sol-digital-originals')
 const widths = [640, 1024, 1600]
 const force = process.argv.includes('--force')
 

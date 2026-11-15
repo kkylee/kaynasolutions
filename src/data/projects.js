@@ -1,5 +1,5 @@
 export const projectsNote =
-  'These are demonstration concepts built to show how Solvanta approaches common business problems. They are not client engagements and are not commercial products.'
+  'These are demonstration concepts built to show how Sol Digital approaches common business problems. They are not client engagements and are not commercial products.'
 
 export const projects = [
   {

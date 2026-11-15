@@ -31,7 +31,7 @@ onMounted(() => {
     <div class="container-page pt-10">
       <Banner
         title="About these articles"
-        text="Sample articles written in the Solvanta voice to demonstrate the kind of guidance we publish. They are not client case studies, and they are not a substitute for advice about your specific situation."
+        text="Sample articles written in the Sol Digital voice to demonstrate the kind of guidance we publish. They are not client case studies, and they are not a substitute for advice about your specific situation."
       />
     </div>
 

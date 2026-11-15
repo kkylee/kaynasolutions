@@ -1,6 +1,6 @@
-# Solvanta Digital
+# Sol Digital
 
-A seven-page static corporate website for Solvanta Digital, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no backend, database, CMS, or admin area.
+A seven-page static corporate website for Sol Digital, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no backend, database, CMS, or admin area.
 
 **Positioning:** Big-business capabilities, practical solutions for growing businesses.
 **Tagline:** Better business starts with better systems.
@@ -29,6 +29,7 @@ Run `npm run check` before any deployment. It fails on broken internal links, mi
 ## Structure
 
 ```
+brand/                       logo pack (SVG + PNG) and usage notes
 build/seo-plugin.js          Per-page <head>, JSON-LD, <noscript>, sitemap
 public/                      favicon, robots.txt, _headers, OG image
 scripts/                     image pipeline, OG generator, dist checks
@@ -63,7 +64,11 @@ After editing content, run `npm test` — the data suite checks lengths, uniquen
 
 `site.js` ships with visibly marked placeholders (`isPlaceholder`, `placeholderNote`). Replace the email, phone, location, and social URLs, then set `isPlaceholder: false` and remove the note once the real details are live. The placeholder note is rendered in the footer and on the Contact page.
 
-`SITE_URL` in the same file drives canonicals, Open Graph URLs, the sitemap, and JSON-LD. Change it to the final domain before launch.
+`SITE_URL` in the same file drives canonicals, Open Graph URLs, the sitemap, and JSON-LD. Change it to the final domain before launch. The site name, placeholder email, and description live in the same file; page titles and descriptions are in `pages.js`.
+
+### Brand assets
+
+The logo pack is in [`brand/`](brand/) — SVG lockups and marks, transparent PNG exports, and usage rules. See [`brand/README.md`](brand/README.md). The header and footer wordmark is the `Wordmark` component; the favicon and the OG image reuse the same mark geometry.
 
 ### Photography
 
@@ -98,7 +103,7 @@ Cloudflare Pages, static output. Full steps, custom domain notes, and rollback i
 ## Launch checklist
 
 - [ ] Replace email, phone, location, and social URLs in `src/data/site.js`; set `isPlaceholder: false`
-- [ ] Set `SITE_URL` to the production domain (with no trailing slash)
+- [ ] Set `SITE_URL` to the production domain (with no trailing slash) and update the `Sitemap:` line in `public/robots.txt`
 - [ ] Review every demonstration label (portfolio, insights, footer, banners)
 - [ ] Run `npm run check` and confirm the PASS line plus budgets
 - [ ] Check the site on a real phone at 320 px and on a slow connection
