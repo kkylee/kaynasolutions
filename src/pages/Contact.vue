@@ -41,7 +41,7 @@ onMounted(() => {
                   <a
                     data-email
                     :href="`mailto:${site.email}`"
-                    class="text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
+                    class="inline-flex min-h-6 items-center text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
                   >
                     {{ site.email }}
                   </a>
@@ -53,7 +53,7 @@ onMounted(() => {
                   <a
                     data-phone
                     :href="`tel:${site.phone.replace(/[^+\d]/g, '')}`"
-                    class="text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
+                    class="inline-flex min-h-6 items-center text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
                   >
                     {{ site.phone }}
                   </a>

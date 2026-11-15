@@ -42,7 +42,7 @@ const systems = [
           >
             {{ system.state }}
           </p>
-          <p class="text-[0.625rem] tabular-nums text-slate-ink/80">{{ system.when }}</p>
+          <p class="text-[0.625rem] tabular-nums text-slate-ink">{{ system.when }}</p>
         </div>
       </li>
     </ul>

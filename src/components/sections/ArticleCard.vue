@@ -22,7 +22,7 @@ defineProps({
         sizes="(min-width: 1024px) 288px, (min-width: 640px) 240px, 100vw"
       />
 
-      <div class="p-5 sm:p-6">
+      <div class="min-w-0 p-5 sm:p-6">
         <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
           <span class="font-semibold uppercase tracking-[0.14em] text-blue">
             {{ article.category }}
@@ -36,7 +36,7 @@ defineProps({
 
         <details class="group mt-4">
           <summary
-            class="inline-flex cursor-pointer list-none items-center gap-2 rounded-md text-sm font-semibold text-navy hover:text-blue [&::-webkit-details-marker]:hidden"
+            class="inline-flex min-h-6 cursor-pointer list-none items-center gap-2 rounded-md py-1 text-sm font-semibold text-navy hover:text-blue [&::-webkit-details-marker]:hidden"
           >
             <span>Read the article</span>
             <span class="sr-only">: {{ article.title }}</span>

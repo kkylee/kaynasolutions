@@ -18,7 +18,7 @@ const flipped = computed(() => props.index % 2 === 1)
     <div
       class="container-page grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-start lg:gap-16"
     >
-      <div :class="flipped ? 'lg:order-2' : ''">
+      <div :class="[flipped ? 'lg:order-2' : '', 'min-w-0']">
         <p
           class="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-blue"
         >
@@ -44,7 +44,7 @@ const flipped = computed(() => props.index % 2 === 1)
 
         <a
           href="/contact/"
-          class="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
+          class="group mt-8 inline-flex min-h-6 items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
         >
           Talk about this service
           <ArrowUpRight
@@ -54,7 +54,7 @@ const flipped = computed(() => props.index % 2 === 1)
         </a>
       </div>
 
-      <div :class="flipped ? 'lg:order-1' : ''">
+      <div :class="[flipped ? 'lg:order-1' : '', 'min-w-0']">
         <PhotoFigure
           :image="img(service.image)"
           ratio="4:3"

@@ -142,6 +142,14 @@ for (const page of pages) {
 
   if (!source.includes('lang="en"')) fail(`${label} — missing lang="en"`)
 
+  const fontPreload = doc.querySelector('link[rel="preload"][as="font"]')
+  if (!fontPreload) {
+    fail(`${label} — missing preloaded variable font`)
+  } else {
+    const href = fontPreload.getAttribute('href').replace(/^\/+/, '')
+    if (!fs.existsSync(path.join(dist, href))) fail(`${label} — font preload target missing: ${href}`)
+  }
+
   const scripts = [
     ...new Set([
       ...doc.querySelectorAll('script[src]').map((el) => el.getAttribute('src')),
@@ -197,6 +205,16 @@ for (const page of pageWeights) {
 }
 
 const assetsDir = path.join(dist, 'assets')
+const cssFiles = fs.existsSync(assetsDir)
+  ? fs.readdirSync(assetsDir).filter((file) => file.endsWith('.css'))
+  : []
+const cssText = cssFiles.map((file) => fs.readFileSync(path.join(assetsDir, file), 'utf8')).join('\n')
+if (cssText.includes('font-display:swap')) {
+  fail('webfonts still use font-display: swap (layout shift risk)')
+}
+if (!cssText.includes('font-display:optional')) {
+  fail('webfonts should use font-display: optional')
+}
 const webpFiles = fs.existsSync(assetsDir)
   ? fs.readdirSync(assetsDir).filter((file) => file.endsWith('.webp'))
   : []

@@ -7,6 +7,7 @@ import Tag from '../components/common/Tag.vue'
 import CtaSection from '../components/common/CtaSection.vue'
 import { mockFor } from '../components/mockups'
 import { projects, projectsNote } from '../data/projects'
+import { img } from '../lib/images'
 import { useReveal } from '../lib/composables/useReveal'
 
 onMounted(() => {
@@ -20,6 +21,7 @@ onMounted(() => {
       eyebrow="Portfolio"
       title="Demonstration projects, built to show how we think."
       lead="Five concepts drawn from problems we see repeatedly in growing businesses. Each one shows the problem, the proposed system, and the tools behind it."
+      :image="img('service-consulting')"
     />
 
     <div id="portfolio-note" class="container-page pt-10">
@@ -35,7 +37,7 @@ onMounted(() => {
           class="scroll-mt-24 overflow-hidden rounded-2xl border border-navy/10 bg-white"
         >
           <div class="grid lg:grid-cols-[1.05fr_0.95fr]">
-            <div class="p-6 sm:p-8 lg:p-10">
+            <div class="min-w-0 p-6 sm:p-8 lg:p-10">
               <div class="flex flex-wrap items-center gap-3">
                 <Tag tone="teal" label="Demonstration" data-demo />
                 <span class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-ink">
@@ -71,7 +73,7 @@ onMounted(() => {
             </div>
 
             <div
-              class="border-t border-navy/10 bg-paper p-6 sm:p-8 lg:grid lg:items-center lg:border-l lg:border-t-0 lg:p-10"
+              class="min-w-0 border-t border-navy/10 bg-paper p-6 sm:p-8 lg:grid lg:items-center lg:border-l lg:border-t-0 lg:p-10"
             >
               <component :is="mockFor(project.mockup)" />
             </div>

@@ -40,7 +40,7 @@ const bars = [
           <span class="text-base font-semibold tabular-nums text-navy">{{ kpi.value }}</span>
           <span
             class="text-[0.625rem] font-semibold tabular-nums"
-            :class="kpi.trend === 'up' ? 'text-teal' : kpi.trend === 'down' ? 'text-blue' : 'text-slate-ink'"
+            :class="kpi.trend === 'up' ? 'text-teal-700' : kpi.trend === 'down' ? 'text-blue' : 'text-slate-ink'"
           >
             {{ kpi.change }}
           </span>

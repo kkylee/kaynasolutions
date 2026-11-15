@@ -108,6 +108,12 @@ Cloudflare Pages, static output. Full steps, custom domain notes, and rollback i
 - [ ] Have the privacy note and demo-content wording reviewed if required
 - [ ] After launch, submit `https://your-domain/sitemap.xml` in Google Search Console
 
+## Performance notes
+
+- Each page loads about 103–121 KB of uncompressed JavaScript (the shared Vue runtime plus the page entry). `check:dist` fails if any page exceeds 250 KB.
+- Images ship as three WebP widths; the 1600 px variant is capped near 280 KB.
+- The two variable fonts (Manrope, Inter) are preloaded. Their `font-display` is set to `optional` by `build/stable-font-display.js`, so a slow first visit keeps the system font instead of reflowing the page when the webfont arrives. Repeat visits and faster connections use the brand fonts. This is deliberate: it keeps layout shift at zero.
+
 ## Known limitations
 
 - Pages render with Vue on the client. A `<noscript>` fallback provides navigation, the tagline, and an email link, but without JavaScript the marketing sections are not shown. If SEO without JavaScript becomes a requirement, add pre-rendering rather than weakening the fallback.

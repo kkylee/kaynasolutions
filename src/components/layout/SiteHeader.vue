@@ -29,7 +29,7 @@ async function close() {
 <template>
   <header class="fixed inset-x-0 top-0 z-40 border-b border-navy/10 bg-white/95 backdrop-blur">
     <div class="container-page flex h-16 items-center justify-between gap-4">
-      <a href="/" class="flex items-center rounded-md py-1" aria-label="Solvanta Digital — home">
+      <a href="/" class="flex items-center rounded-md py-1">
         <Wordmark />
       </a>
 

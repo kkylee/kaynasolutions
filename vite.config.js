@@ -2,9 +2,10 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import { seo } from './build/seo-plugin.js'
+import { stableFontDisplay } from './build/stable-font-display.js'
 
 export default defineConfig({
-  plugins: [vue(), tailwindcss(), seo()],
+  plugins: [stableFontDisplay(), vue(), tailwindcss(), seo()],
   build: {
     rollupOptions: {
       input: {

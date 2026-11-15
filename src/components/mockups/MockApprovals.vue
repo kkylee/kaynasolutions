@@ -33,7 +33,7 @@ const steps = [
         <p class="text-sm font-semibold text-navy">Purchase request #1042</p>
         <p class="text-[0.6875rem] text-slate-ink">Supplier onboarding · 3 steps</p>
       </div>
-      <span class="rounded-full bg-blue/10 px-2.5 py-1 text-[0.625rem] font-semibold text-blue">
+      <span class="rounded-full bg-blue/10 px-2.5 py-1 text-[0.625rem] font-semibold text-navy">
         In review
       </span>
     </div>
@@ -61,7 +61,7 @@ const steps = [
             <p class="text-[0.625rem] tabular-nums text-slate-ink">{{ step.time }}</p>
           </div>
           <p class="text-[0.625rem] text-slate-ink">{{ step.who }}</p>
-          <p class="mt-0.5 text-[0.625rem] text-slate-ink/80">{{ step.note }}</p>
+          <p class="mt-0.5 text-[0.625rem] text-slate-ink">{{ step.note }}</p>
         </div>
       </li>
     </ol>

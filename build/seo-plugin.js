@@ -97,6 +97,28 @@ export function seo() {
       const dir = path.resolve(process.cwd(), outDir)
       if (!fs.existsSync(dir)) return
       fs.writeFileSync(path.join(dir, 'sitemap.xml'), sitemap())
+
+      const assetDir = path.join(dir, 'assets')
+      if (!fs.existsSync(assetDir)) return
+      const fonts = fs
+        .readdirSync(assetDir)
+        .filter((file) => /-latin-wght-normal-[A-Za-z0-9_-]+\.woff2$/.test(file))
+      if (!fonts.length) return
+      const preloads = fonts
+        .map(
+          (font) =>
+            `<link rel="preload" href="/assets/${font}" as="font" type="font/woff2" crossorigin />`,
+        )
+        .join('\n    ')
+
+      for (const page of pages) {
+        const file = path.join(dir, page.html)
+        if (!fs.existsSync(file)) continue
+        const html = fs.readFileSync(file, 'utf8')
+        if (!html.includes('as="font"')) {
+          fs.writeFileSync(file, html.replace('</head>', `  ${preloads}\n  </head>`))
+        }
+      }
     },
   }
 }

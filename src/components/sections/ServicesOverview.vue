@@ -16,7 +16,7 @@ import { icon } from '../../lib/icons'
         />
         <a
           href="/services/"
-          class="group inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
+          class="group inline-flex min-h-6 items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
         >
           All services
           <ArrowUpRight

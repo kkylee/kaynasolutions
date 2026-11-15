@@ -15,7 +15,7 @@ const flipped = computed(() => props.index % 2 === 1)
 <template>
   <article :id="solution.slug" class="scroll-mt-24 border-t border-navy/10 py-16 lg:py-24">
     <div class="container-page grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
-      <div :class="flipped ? 'lg:order-2' : ''">
+      <div :class="[flipped ? 'lg:order-2' : '', 'min-w-0']">
         <p
           class="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-blue"
         >
@@ -46,7 +46,7 @@ const flipped = computed(() => props.index % 2 === 1)
 
         <a
           href="/contact/"
-          class="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
+          class="group mt-8 inline-flex min-h-6 items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
         >
           {{ solution.cta }}
           <ArrowUpRight
@@ -56,7 +56,7 @@ const flipped = computed(() => props.index % 2 === 1)
         </a>
       </div>
 
-      <div :class="[flipped ? 'lg:order-1' : '', 'lg:sticky lg:top-24']">
+      <div :class="[flipped ? 'lg:order-1' : '', 'min-w-0 lg:sticky lg:top-24']">
         <component :is="mockFor(solution.mockup)" />
         <ul class="mt-4 flex flex-wrap gap-2">
           <li

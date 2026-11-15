@@ -10,7 +10,7 @@ const clients = [
 
 const stageClass = (stage) => {
   if (stage === 'Won') return 'bg-teal/15 text-navy'
-  if (stage === 'Quotation') return 'bg-blue/10 text-blue'
+  if (stage === 'Quotation') return 'bg-blue/10 text-navy'
   return 'bg-navy/5 text-slate-ink'
 }
 </script>
