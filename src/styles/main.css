@@ -87,3 +87,17 @@
     }
   }
 }
+
+@layer components {
+  .field {
+    @apply mt-1.5 w-full rounded-lg border border-navy/20 bg-white px-3.5 py-2.5 text-sm text-navy placeholder:text-slate-ink/60 focus:border-blue;
+  }
+
+  .field-label {
+    @apply block text-xs font-semibold uppercase tracking-[0.12em] text-navy;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-xs font-medium text-red-600;
+  }
+}
