@@ -10,6 +10,18 @@ const esc = (value) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
+function jsonLd() {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    url: SITE_URL,
+    description: site.description,
+    areaServed: 'Philippines',
+  }
+  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`
+}
+
 function headFor(page) {
   const url = SITE_URL + page.path
   const image = SITE_URL + page.ogImage
@@ -29,6 +41,7 @@ function headFor(page) {
     `<meta name="twitter:title" content="${esc(page.title)}" />`,
     `<meta name="twitter:description" content="${esc(page.description)}" />`,
     `<meta name="twitter:image" content="${image}" />`,
+    ...(page.path === '/' ? [jsonLd()] : []),
   ].join('\n    ')
 }
 

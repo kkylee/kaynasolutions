@@ -16,6 +16,8 @@ const { SITE_URL, site, nav } = await import(pathToFileURL(path.join(root, 'src/
 
 const errors = []
 const fail = (message) => errors.push(message)
+const kb = (bytes) => `${(bytes / 1024).toFixed(1)} KB`
+const pageWeights = []
 
 const fileFor = (page) => (page.path === '/' ? path.join(dist, 'index.html') : path.join(dist, page.path, 'index.html'))
 
@@ -81,7 +83,33 @@ for (const page of pages) {
   if (og('image') && !/^https?:\/\//.test(og('image'))) {
     fail(`${label} — og:image must be absolute: "${og('image')}"`)
   }
+  if (og('image')) {
+    const relative = og('image').replace(SITE_URL, '').replace(/^\/+/, '')
+    if (!fs.existsSync(path.join(dist, relative))) {
+      fail(`${label} — og:image file missing from dist: ${og('image')}`)
+    }
+  }
   if (!doc.querySelector('meta[name="twitter:card"]')) fail(`${label} — missing twitter:card`)
+
+  const jsonLd = doc.querySelectorAll('script[type="application/ld+json"]')
+  if (page.path === '/') {
+    if (jsonLd.length !== 1) {
+      fail(`${label} — expected exactly one Organization JSON-LD block, found ${jsonLd.length}`)
+    } else {
+      try {
+        const data = JSON.parse(jsonLd[0].text ?? jsonLd[0].textContent ?? '')
+        if (data['@type'] !== 'Organization') fail(`${label} — JSON-LD @type must be Organization`)
+        for (const key of ['name', 'url', 'description']) {
+          if (!data[key]) fail(`${label} — JSON-LD missing "${key}"`)
+        }
+        if (data.url !== SITE_URL) fail(`${label} — JSON-LD url "${data.url}" ≠ "${SITE_URL}"`)
+      } catch (error) {
+        fail(`${label} — JSON-LD is not valid JSON (${error.message})`)
+      }
+    }
+  } else if (jsonLd.length) {
+    fail(`${label} — JSON-LD must only appear on the home page`)
+  }
 
   const noscript = doc.querySelector('noscript')
   const noscriptHtml = noscript?.innerHTML ?? ''
@@ -113,6 +141,18 @@ for (const page of pages) {
   for (const id of seenIds(doc)) fail(`${label} — duplicate id "${id}"`)
 
   if (!source.includes('lang="en"')) fail(`${label} — missing lang="en"`)
+
+  const scripts = [
+    ...new Set([
+      ...doc.querySelectorAll('script[src]').map((el) => el.getAttribute('src')),
+      ...doc.querySelectorAll('link[rel="modulepreload"]').map((el) => el.getAttribute('href')),
+    ]),
+  ]
+  const jsBytes = scripts.reduce((total, src) => {
+    const file = path.join(dist, src.replace(/^\/+/, ''))
+    return total + (fs.existsSync(file) ? fs.statSync(file).size : 0)
+  }, 0)
+  pageWeights.push({ label, jsBytes })
 }
 
 const sitemapFile = path.join(dist, 'sitemap.xml')
@@ -123,6 +163,15 @@ if (!fs.existsSync(sitemapFile)) {
   for (const page of pages) {
     if (!sitemap.includes(`<loc>${SITE_URL}${page.path}</loc>`)) {
       fail(`sitemap.xml missing <loc> for ${page.path}`)
+    }
+  }
+  const lastmods = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1])
+  if (lastmods.length !== pages.length) {
+    fail(`sitemap.xml has ${lastmods.length} lastmod values (expected ${pages.length})`)
+  }
+  for (const value of lastmods) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) {
+      fail(`sitemap.xml has an invalid lastmod: "${value}"`)
     }
   }
 }
@@ -140,4 +189,32 @@ if (errors.length) {
   process.exit(1)
 }
 
+const JS_BUDGET = 250 * 1024
+for (const page of pageWeights) {
+  if (page.jsBytes > JS_BUDGET) {
+    fail(`${page.label} — JS weight ${kb(page.jsBytes)} exceeds 250 KB uncompressed`)
+  }
+}
+
+const assetsDir = path.join(dist, 'assets')
+const webpFiles = fs.existsSync(assetsDir)
+  ? fs.readdirSync(assetsDir).filter((file) => file.endsWith('.webp'))
+  : []
+const imageBytes = webpFiles.reduce((total, file) => total + fs.statSync(path.join(assetsDir, file)).size, 0)
+const IMAGE_BUDGET = 20 * 1024 * 1024
+if (imageBytes > IMAGE_BUDGET) {
+  fail(`image weight ${(imageBytes / 1024 / 1024).toFixed(2)} MB exceeds 20 MB across ${webpFiles.length} files`)
+}
+
+if (errors.length) {
+  console.error(`FAIL — ${errors.length} issue(s):`)
+  for (const error of errors) console.error(`  • ${error}`)
+  process.exit(1)
+}
+
+console.log('Per-page JS (uncompressed):')
+for (const page of pageWeights) console.log(`  ${page.label.padEnd(12)} ${kb(page.jsBytes)}`)
+console.log(
+  `Images: ${(imageBytes / 1024 / 1024).toFixed(2)} MB across ${webpFiles.length} WebP files`,
+)
 console.log(`PASS — ${pages.length} pages, sitemap and robots OK (${site.name})`)
