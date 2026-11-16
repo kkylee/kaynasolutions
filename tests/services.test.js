@@ -12,6 +12,11 @@ describe('Services page', () => {
     expect(headings[0].text()).toBe('Technology solutions for businesses ready to grow.')
   })
 
+  it('describes the current number of services', () => {
+    expect(wrapper.text()).toContain('Seven services')
+    expect(wrapper.text()).not.toContain('Six services')
+  })
+
   it('renders a detail section for every service', () => {
     const articles = wrapper.findAll('main article')
     expect(articles).toHaveLength(services.length)

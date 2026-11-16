@@ -14,10 +14,12 @@ describe('Kayna brand assets', () => {
     expect(read('brand/kayna-logo-inverse.svg')).toContain('Kayna')
   })
 
-  it('ships the compact and public logo variants', () => {
+  it('ships the compact, public, and dark-mark logo variants', () => {
     expect(exists('brand/kayna-logo-compact.svg')).toBe(true)
     expect(exists('public/brand/kayna-logo.svg')).toBe(true)
     expect(exists('public/brand/kayna-logo-compact.svg')).toBe(true)
+    expect(read('brand/kayna-mark-dark.svg')).toContain('#1B2A5B')
+    expect(exists('public/brand/kayna-mark-dark.svg')).toBe(true)
   })
 
   it('uses the package name and no old Sol brand files', () => {

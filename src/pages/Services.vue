@@ -18,7 +18,7 @@ onMounted(() => {
     <PageHeader
       eyebrow="Services"
       title="Technology solutions for businesses ready to grow."
-      lead="Six services that work on their own or together. Most engagements start with one process that keeps costing your team time, then grow from there."
+      lead="Seven services that work on their own or together. Most engagements start with one process that keeps costing your team time, then grow from there."
       :image="img('hero-consultation')"
     />
 

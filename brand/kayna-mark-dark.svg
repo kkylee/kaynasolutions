@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Kayna Digital Solutions">
+  <title>Kayna Digital Solutions</title>
+  <defs>
+  <linearGradient id="k-purple" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#4B2EE6" />
+    <stop offset="1" stop-color="#6D3AF0" />
+  </linearGradient>
+  <linearGradient id="k-blue" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#4F86F7" />
+    <stop offset="1" stop-color="#2F62E3" />
+  </linearGradient></defs>
+  <rect width="1200" height="800" fill="#1B2A5B" />
+  <circle cx="600" cy="400" r="112" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="600" cy="400" r="160" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="600" cy="400" r="224" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="600" cy="400" r="304" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="600" cy="400" r="400" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="600" cy="400" r="520" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <g transform="translate(432 280) scale(4.7)">
+    
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <path d="M12 18C12 9 23 8 28 19L34 34V60" stroke="url(#k-purple)" />
+    <path d="M56 14L34 36L56 58" stroke="url(#k-blue)" />
+  </g>
+  <circle cx="34" cy="12" r="7" fill="#00AEEF" />
+  </g>
+</svg>

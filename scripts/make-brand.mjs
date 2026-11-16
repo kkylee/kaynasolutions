@@ -24,6 +24,10 @@ const mark = (white = false) => `
   </g>
   <circle cx="34" cy="12" r="7" fill="${white ? '#FFFFFF' : '#00AEEF'}" />`
 
+const rings = (cx, cy, scales = [1]) => scales
+  .map((s) => `<circle cx="${cx}" cy="${cy}" r="${80 * s}" fill="none" stroke="#2A3A6B" stroke-width="1.5" />`)
+  .join('\n  ')
+
 const wordmark = (inverse = false, compact = false) => {
   const primary = inverse ? '#FFFFFF' : '#1B2A5B'
   const secondary = inverse ? '#E2E8F0' : '#64748B'
@@ -54,8 +58,19 @@ const avatarSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="
   <title>Kayna Digital Solutions</title>
   <defs>${gradients}</defs>
   <rect width="1024" height="1024" rx="220" fill="#1B2A5B" />
-  <g transform="translate(176 176) scale(9.333)">
-    ${mark(true)}
+  ${rings(512, 512, [1.4, 2, 2.8, 3.8, 5])}
+  <g transform="translate(284 284) scale(6.4)">
+    ${mark()}
+  </g>
+</svg>`
+
+const markDarkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Kayna Digital Solutions">
+  <title>Kayna Digital Solutions</title>
+  <defs>${gradients}</defs>
+  <rect width="1200" height="800" fill="#1B2A5B" />
+  ${rings(600, 400, [1.4, 2, 2.8, 3.8, 5, 6.5])}
+  <g transform="translate(432 280) scale(4.7)">
+    ${mark()}
   </g>
 </svg>`
 
@@ -71,7 +86,8 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
   <title>Kayna Digital Solutions — Better business starts with better systems.</title>
   ${fontStyle}
   <defs>${gradients}</defs>
-  <rect width="1200" height="630" fill="#101D35" />
+  <rect width="1200" height="630" fill="#1B2A5B" />
+  ${rings(300, 170, [1.2, 1.8, 2.5, 3.4, 4.5])}
   <circle cx="1090" cy="118" r="230" fill="#14B8A6" opacity="0.07" />
   <circle cx="1140" cy="560" r="180" fill="#2563EB" opacity="0.10" />
   <g transform="translate(80 64) scale(1.55)">
@@ -91,8 +107,10 @@ const files = {
   'brand/kayna-logo-inverse.svg': wordmark(true, false),
   'brand/kayna-mark.svg': markSvg(false),
   'brand/kayna-mark-inverse.svg': markSvg(true),
+  'brand/kayna-mark-dark.svg': markDarkSvg,
   'brand/kayna-avatar.svg': avatarSvg,
   'public/favicon.svg': faviconSvg,
+  'public/brand/kayna-mark-dark.svg': markDarkSvg,
   'public/brand/kayna-logo.svg': wordmark(false, false),
   'public/brand/kayna-logo-compact.svg': wordmark(false, true),
   'public/og/og-default.svg': ogSvg,
@@ -116,6 +134,7 @@ await raster(files['brand/kayna-logo-inverse.svg'], 'brand/png/kayna-logo-invers
 await raster(files['brand/kayna-mark.svg'], 'brand/png/kayna-mark-512.png', 512)
 await raster(files['brand/kayna-mark.svg'], 'brand/png/kayna-mark-1024.png', 1024)
 await raster(files['brand/kayna-mark-inverse.svg'], 'brand/png/kayna-mark-inverse-1024.png', 1024)
+await raster(files['brand/kayna-mark-dark.svg'], 'brand/png/kayna-mark-dark-1600.png', 1600)
 await raster(files['brand/kayna-avatar.svg'], 'brand/png/kayna-avatar-1024.png', 1024)
 await sharp(Buffer.from(ogSvg)).png().toFile(path.resolve(root, 'public/og/og-default.png'))
 console.log('rendered public/og/og-default.png @1200x630')

@@ -13,12 +13,14 @@ The SVGs embed the Manrope variable font so the wordmark renders accurately with
 | `kayna-logo-inverse.svg` | Lockup with white lettering for navy or other dark backgrounds. |
 | `kayna-mark.svg` | Mark only, on a transparent background. |
 | `kayna-mark-inverse.svg` | Mark only in white, for dark backgrounds. |
-| `kayna-avatar.svg` | Square social avatar: navy field with the white mark. |
+| `kayna-mark-dark.svg` | Wide navy field with concentric rings and the gradient mark. |
+| `kayna-avatar.svg` | Square social avatar: navy field with the gradient mark and rings. |
 | `png/kayna-logo-1600.png` | 1600 px transparent PNG of the primary lockup. |
 | `png/kayna-logo-inverse-1600.png` | 1600 px transparent PNG of the inverse lockup. |
 | `png/kayna-mark-512.png` | 512 px mark. |
 | `png/kayna-mark-1024.png` | 1024 px mark. |
 | `png/kayna-mark-inverse-1024.png` | 1024 px inverse mark. |
+| `png/kayna-mark-dark-1600.png` | 1600 px navy field with rings and the gradient mark. |
 | `png/kayna-avatar-1024.png` | 1024 px social avatar. |
 
 Regenerate every asset with `npm run brand`. The script also writes the site favicon, public logo variants, and the Open Graph image.

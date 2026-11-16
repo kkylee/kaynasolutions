@@ -10,12 +10,17 @@
     <stop offset="1" stop-color="#2F62E3" />
   </linearGradient></defs>
   <rect width="1024" height="1024" rx="220" fill="#1B2A5B" />
-  <g transform="translate(176 176) scale(9.333)">
+  <circle cx="512" cy="512" r="112" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="512" cy="512" r="160" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="512" cy="512" r="224" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="512" cy="512" r="304" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <circle cx="512" cy="512" r="400" fill="none" stroke="#2A3A6B" stroke-width="1.5" />
+  <g transform="translate(284 284) scale(6.4)">
     
   <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
-    <path d="M12 18C12 9 23 8 28 19L34 34V60" stroke="#FFFFFF" />
-    <path d="M56 14L34 36L56 58" stroke="#FFFFFF" />
+    <path d="M12 18C12 9 23 8 28 19L34 34V60" stroke="url(#k-purple)" />
+    <path d="M56 14L34 36L56 58" stroke="url(#k-blue)" />
   </g>
-  <circle cx="34" cy="12" r="7" fill="#FFFFFF" />
+  <circle cx="34" cy="12" r="7" fill="#00AEEF" />
   </g>
 </svg>
