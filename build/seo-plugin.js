@@ -15,6 +15,7 @@ function jsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: site.name,
+    alternateName: site.shortName,
     url: SITE_URL,
     description: site.description,
     email: site.email,
@@ -80,7 +81,7 @@ export function seo() {
   let outDir = 'dist'
 
   return {
-    name: 'sol-digital-seo',
+    name: 'kayna-digital-solutions-seo',
     configResolved(config) {
       outDir = config.build.outDir
     },

@@ -7,7 +7,7 @@
  */
 export function stableFontDisplay() {
   return {
-    name: 'sol-digital-stable-font-display',
+    name: 'kayna-digital-solutions-stable-font-display',
     enforce: 'pre',
     transform(code, id) {
       if (!id.includes('@fontsource') || !id.includes('.css')) return null

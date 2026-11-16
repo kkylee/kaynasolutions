@@ -1,4 +1,4 @@
-# Sol Digital — Content Brief
+# Kayna Digital Solutions — Content Brief
 
 Source of truth for names, structure, and voice. The client's original specification fixed these lists; everything else is written fresh for this build.
 

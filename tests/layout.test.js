@@ -32,11 +32,14 @@ afterEach(() => {
 })
 
 describe('Wordmark', () => {
-  it('shows the brand name next to the mark', () => {
+  it('shows the supplied Kayna logo with an accessible name', () => {
     const wrapper = mount(Wordmark)
-    expect(wrapper.text()).toContain(site.name)
-    expect(wrapper.text()).toContain('Digital')
-    expect(wrapper.find('svg').exists()).toBe(true)
+    const images = wrapper.findAll('img')
+    expect(images.length).toBeGreaterThan(0)
+    for (const image of images) {
+      expect(image.attributes('alt')).toBe(site.name)
+      expect(image.attributes('src')).toContain('kayna-logo')
+    }
   })
 })
 

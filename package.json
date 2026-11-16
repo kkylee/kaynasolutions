@@ -1,5 +1,5 @@
 {
-  "name": "sol-digital",
+  "name": "kayna-digital-solutions",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -11,6 +11,7 @@
     "check:dist": "node scripts/check-dist.mjs",
     "check": "npm run build && npm test && npm run check:dist",
     "images": "node scripts/fetch-images.mjs",
+    "brand": "node scripts/make-brand.mjs",
     "og": "node scripts/make-og.mjs"
   },
   "dependencies": {

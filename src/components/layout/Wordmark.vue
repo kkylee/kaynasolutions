@@ -5,29 +5,24 @@ defineProps({
 </script>
 
 <template>
-  <span class="inline-flex items-center gap-2.5">
-    <svg viewBox="0 0 32 32" class="h-8 w-8 flex-none" aria-hidden="true" focusable="false">
-      <rect width="32" height="32" rx="8" :class="tone === 'light' ? 'fill-white' : 'fill-navy'" />
-      <path
-        d="M11 12.25h7.25a4.75 4.75 0 0 1 0 9.5H13.5"
-        fill="none"
-        :stroke="tone === 'light' ? '#101D35' : '#FFFFFF'"
-        stroke-width="2.6"
-        stroke-linecap="round"
+  <span class="inline-flex items-center">
+    <img
+      v-if="tone === 'light'"
+      src="/brand/kayna-logo-inverse.svg"
+      class="h-8 w-auto"
+      alt="Kayna Digital Solutions"
+    />
+    <template v-else>
+      <img
+        src="/brand/kayna-logo-compact.svg"
+        class="h-8 w-auto sm:hidden"
+        alt="Kayna Digital Solutions"
       />
-      <path
-        d="M21 19.75h-7.25a4.75 4.75 0 0 1 0-9.5H18.5"
-        fill="none"
-        stroke="#14B8A6"
-        stroke-width="2.6"
-        stroke-linecap="round"
+      <img
+        src="/brand/kayna-logo.svg"
+        class="hidden h-8 w-auto sm:block"
+        alt="Kayna Digital Solutions"
       />
-    </svg>
-    <span
-      class="font-display text-lg leading-none tracking-tight"
-      :class="tone === 'light' ? 'text-white' : 'text-navy'"
-    >
-      <span class="font-semibold">Sol</span><span class="font-normal opacity-70"> Digital</span>
-    </span>
+    </template>
   </span>
 </template>

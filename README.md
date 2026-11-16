@@ -1,6 +1,6 @@
-# Sol Digital
+# Kayna Digital Solutions
 
-A seven-page static corporate website for Sol Digital, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no backend, database, CMS, or admin area.
+A seven-page static corporate website for Kayna Digital Solutions, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no backend, database, CMS, or admin area.
 
 **Positioning:** Big-business capabilities, practical solutions for growing businesses.
 **Tagline:** Better business starts with better systems.
@@ -22,7 +22,8 @@ A seven-page static corporate website for Sol Digital, built with Vue 3, Vite, a
 | `npm run check:dist` | Validate the built output (SEO, links, alt text, budgets) |
 | `npm run check` | Build, test, then validate `dist/` — the full gate |
 | `npm run images` | Download and convert the licensed photography |
-| `npm run og` | Regenerate `public/og/og-default.png` |
+| `npm run brand` | Regenerate the logo pack, favicon, public logo variants, and OG image |
+| `npm run og` | Regenerate `public/og/og-default.png` from the SVG |
 
 Run `npm run check` before any deployment. It fails on broken internal links, missing metadata, missing image dimensions, duplicate IDs, a missing `<noscript>` fallback, oversized JS, or a broken sitemap.
 

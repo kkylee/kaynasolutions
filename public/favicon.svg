@@ -1,17 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Sol Digital">
-  <rect width="32" height="32" rx="8" fill="#101D35" />
-  <path
-    d="M11 12.25h7.25a4.75 4.75 0 0 1 0 9.5H13.5"
-    fill="none"
-    stroke="#FFFFFF"
-    stroke-width="2.6"
-    stroke-linecap="round"
-  />
-  <path
-    d="M21 19.75h-7.25a4.75 4.75 0 0 1 0-9.5H18.5"
-    fill="none"
-    stroke="#14B8A6"
-    stroke-width="2.6"
-    stroke-linecap="round"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kayna Digital Solutions">
+  <title>Kayna Digital Solutions</title>
+  <rect width="64" height="64" rx="16" fill="#1B2A5B" />
+  <g transform="translate(6 6) scale(0.775)">
+    
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <path d="M12 18C12 9 23 8 28 19L34 34V60" stroke="#FFFFFF" />
+    <path d="M56 14L34 36L56 58" stroke="#FFFFFF" />
+  </g>
+  <circle cx="34" cy="12" r="7" fill="#FFFFFF" />
+  </g>
 </svg>
