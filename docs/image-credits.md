@@ -5,7 +5,7 @@ All photographs are used under the [Pexels License](https://www.pexels.com/licen
 | File key | Photographer | Source |
 | --- | --- | --- |
 | `hero-consultation` | Kindel Media | https://www.pexels.com/photo/people-working-together-on-the-laptop-7651822/ |
-| `challenges-counter` | Mico Medel | https://www.pexels.com/photo/woman-using-phone-in-a-small-local-shop-37212313/ |
+| `challenges-counter` | Mico Medel | https://www.pexels.com/photo/skilled-tailor-at-work-in-a-busy-workshop-40927957/ |
 | `why-team` | Ketut Subiyanto | https://www.pexels.com/photo/smiling-woman-sitting-in-office-4623358/ |
 | `about-collaboration` | Mikhail Nilov | https://www.pexels.com/photo/colleagues-sitting-by-table-at-office-8101931/ |
 | `contact-meeting` | MART PRODUCTION | https://www.pexels.com/photo/woman-and-man-talking-while-sitting-at-table-7644015/ |
