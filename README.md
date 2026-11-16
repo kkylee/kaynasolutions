@@ -51,7 +51,7 @@ tests/                       Vitest suites
 All copy is in `src/data/`:
 
 - `site.js` — site name, tagline, contact details, social links, audiences
-- `services.js` — six services with problems, benefits, and examples
+- `services.js` — seven services with problems, benefits, and examples
 - `solutions.js` — six solutions with problem, approach, steps, benefits
 - `projects.js` — five demonstration projects and the portfolio note
 - `articles.js` — six sample articles rendered inline on Insights

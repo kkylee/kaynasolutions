@@ -167,4 +167,32 @@ export const services = [
     ],
     image: 'service-consulting',
   },
+  {
+    slug: 'ready-made-systems',
+    icon: 'Boxes',
+    title: 'Ready-Made Systems',
+    summary:
+      'Working system foundations you can start using quickly, then adjust to fit the way your business actually runs.',
+    problems: [
+      'The process is common enough that a full custom build would take longer than the business can wait.',
+      'Spreadsheets and chat threads already cover the work, but nobody can see the current status.',
+      'A growing team needs shared records now, not after a long design phase.',
+    ],
+    benefits: [
+      'A usable starting point in days rather than months',
+      'Core records, workflows, and reports already connected',
+      'Room to tailor the system once the team is using it',
+    ],
+    examples: [
+      {
+        title: 'Starter operations system',
+        body: 'A preconfigured set of employee, customer, and stock records with basic approvals and reports, ready for your data and your team.',
+      },
+      {
+        title: 'Branch-ready foundation',
+        body: 'A shared system for branches that need common records and simple reporting before a larger custom build makes sense.',
+      },
+    ],
+    image: 'service-software',
+  },
 ]

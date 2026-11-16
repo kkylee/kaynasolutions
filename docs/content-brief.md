@@ -4,13 +4,14 @@ Source of truth for names, structure, and voice. The client's original specifica
 
 ## Fixed names
 
-**Services (6, in this order)**
+**Services (7, in this order)**
 1. Custom Software Development
 2. Business Process Automation
 3. API & System Integrations
 4. Business Intelligence & Analytics
 5. Cloud Solutions & Technical Support
 6. Technology Consulting
+7. Ready-Made Systems
 
 **Solutions (6, in this order)**
 1. HR & Employee Management

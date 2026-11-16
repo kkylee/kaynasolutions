@@ -12,7 +12,7 @@ import { icon } from '../../lib/icons'
         <SectionHeading
           eyebrow="Services"
           title="Technology solutions for businesses ready to grow."
-          lead="Six ways we help, from a single automation to a connected set of systems."
+          lead="Seven ways we help, from a ready-made starting point to a connected set of systems."
         />
         <a
           href="/services/"

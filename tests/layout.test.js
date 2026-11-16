@@ -118,7 +118,7 @@ describe('SiteFooter', () => {
     for (const path of ['/', '/services/', '/solutions/', '/about/', '/portfolio/', '/insights/', '/contact/']) {
       expect(hrefs).toContain(path)
     }
-    expect(hrefs.filter((href) => href.startsWith('/services/#'))).toHaveLength(6)
+    expect(hrefs.filter((href) => href.startsWith('/services/#'))).toHaveLength(7)
   })
 })
 

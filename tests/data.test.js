@@ -13,6 +13,7 @@ const SERVICE_TITLES = [
   'Business Intelligence & Analytics',
   'Cloud Solutions & Technical Support',
   'Technology Consulting',
+  'Ready-Made Systems',
 ]
 
 const SOLUTION_TITLES = [
@@ -81,7 +82,7 @@ describe('site', () => {
 })
 
 describe('services', () => {
-  it('lists the six services in the brief order', () => {
+  it('lists the seven services in the brief order', () => {
     expect(services.map((service) => service.title)).toEqual(SERVICE_TITLES)
   })
 
