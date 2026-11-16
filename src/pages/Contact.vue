@@ -48,14 +48,26 @@ onMounted(() => {
                 </dd>
               </div>
               <div>
-                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-ink">Phone</dt>
+                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-ink">Telephone</dt>
                 <dd class="mt-0.5">
                   <a
                     data-phone
-                    :href="`tel:${site.phone.replace(/[^+\d]/g, '')}`"
+                    :href="`tel:${site.phoneHref}`"
                     class="inline-flex min-h-6 items-center text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
                   >
                     {{ site.phone }}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-ink">Mobile</dt>
+                <dd class="mt-0.5">
+                  <a
+                    data-mobile
+                    :href="`tel:${site.mobileHref}`"
+                    class="inline-flex min-h-6 items-center text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
+                  >
+                    {{ site.mobile }}
                   </a>
                 </dd>
               </div>
@@ -64,11 +76,6 @@ onMounted(() => {
                 <dd class="mt-0.5 text-navy">{{ site.location }}</dd>
               </div>
             </dl>
-
-            <p class="mt-5 flex items-start gap-2 border-t border-navy/10 pt-4 text-xs leading-relaxed text-slate-ink">
-              <span class="mt-1 h-2 w-2 flex-none rounded-full bg-teal" aria-hidden="true" />
-              {{ site.placeholderNote }}
-            </p>
           </div>
 
           <div class="rounded-2xl border border-navy/10 p-6">

@@ -103,11 +103,13 @@ describe('SiteHeader', () => {
 })
 
 describe('SiteFooter', () => {
-  it('marks placeholder contact details and demonstration content', () => {
+  it('shows contact details and the demonstration note', () => {
     const wrapper = mount(SiteFooter)
-    expect(wrapper.text()).toContain(site.placeholderNote)
     expect(wrapper.text()).toMatch(/demonstration/i)
     expect(wrapper.find(`a[href="mailto:${site.email}"]`).exists()).toBe(true)
+    expect(wrapper.find(`a[href="tel:${site.phoneHref}"]`).exists()).toBe(true)
+    expect(wrapper.find(`a[href="tel:${site.mobileHref}"]`).exists()).toBe(true)
+    expect(wrapper.text()).not.toMatch(/placeholder/i)
   })
 
   it('links to every page and every service anchor', () => {

@@ -57,9 +57,11 @@ describe('site', () => {
     expect(nav.every((item) => item.label.length > 0)).toBe(true)
   })
 
-  it('marks contact details as placeholders', () => {
-    expect(site.isPlaceholder).toBe(true)
-    expect(site.email).toContain('@')
+  it('exposes the real contact details', () => {
+    expect(site.isPlaceholder).toBe(false)
+    expect(site.email).toBe('joshuakyle.malitig@gmail.com')
+    expect(site.phone).toBe('(043) 756 8818')
+    expect(site.mobile).toBe('+63 977 400 9654')
     expect(site.location).toBe('Philippines')
   })
 })

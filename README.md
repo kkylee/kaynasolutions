@@ -62,9 +62,9 @@ After editing content, run `npm test` — the data suite checks lengths, uniquen
 
 ### Contact details
 
-`site.js` ships with visibly marked placeholders (`isPlaceholder`, `placeholderNote`). Replace the email, phone, location, and social URLs, then set `isPlaceholder: false` and remove the note once the real details are live. The placeholder note is rendered in the footer and on the Contact page.
+The email, telephone, and mobile number are stored in `site.js` and shown in the footer and on the Contact page. `phoneHref` and `mobileHref` hold the international `tel:` values. The social links are still placeholders (`href: '#'`).
 
-`SITE_URL` in the same file drives canonicals, Open Graph URLs, the sitemap, and JSON-LD. Change it to the final domain before launch. The site name, placeholder email, and description live in the same file; page titles and descriptions are in `pages.js`.
+`SITE_URL` in the same file drives canonicals, Open Graph URLs, the sitemap, and JSON-LD. Change it to the final domain before launch. The site name, contact details, and description live in the same file; page titles and descriptions are in `pages.js`.
 
 ### Brand assets
 

@@ -12,10 +12,6 @@ const year = new Date().getFullYear()
       <div>
         <Wordmark />
         <p class="mt-5 max-w-xs text-sm leading-relaxed text-slate-ink">{{ site.tagline }}</p>
-        <p class="mt-6 flex items-start gap-2 text-xs leading-relaxed text-slate-ink">
-          <span class="mt-1 h-2 w-2 flex-none rounded-full bg-teal" aria-hidden="true" />
-          {{ site.placeholderNote }}
-        </p>
       </div>
 
       <nav aria-label="Footer pages">
@@ -47,8 +43,13 @@ const year = new Date().getFullYear()
             </a>
           </li>
           <li>
-            <a :href="`tel:${site.phone.replace(/[^+\d]/g, '')}`" class="text-slate-ink hover:text-navy hover:underline">
+            <a :href="`tel:${site.phoneHref}`" class="text-slate-ink hover:text-navy hover:underline">
               {{ site.phone }}
+            </a>
+          </li>
+          <li>
+            <a :href="`tel:${site.mobileHref}`" class="text-slate-ink hover:text-navy hover:underline">
+              {{ site.mobile }}
             </a>
           </li>
           <li class="text-slate-ink">{{ site.location }}</li>

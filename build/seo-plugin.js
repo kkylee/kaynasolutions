@@ -17,6 +17,8 @@ function jsonLd() {
     name: site.name,
     url: SITE_URL,
     description: site.description,
+    email: site.email,
+    telephone: site.mobileHref,
     areaServed: 'Philippines',
   }
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`
@@ -50,7 +52,7 @@ function noscriptFor() {
     '<div class="noscript-fallback">',
     `<p><strong>${esc(site.name)}</strong> — ${esc(site.tagline)}</p>`,
     `<nav aria-label="Pages">${nav.map((item) => `<a href="${item.path}">${esc(item.label)}</a>`).join(' · ')}</nav>`,
-    `<p>Email <a href="mailto:${esc(site.email)}">${esc(site.email)}</a> · ${esc(site.location)}</p>`,
+    `<p>Email <a href="mailto:${esc(site.email)}">${esc(site.email)}</a> · <a href="tel:${esc(site.phoneHref)}">${esc(site.phone)}</a> · <a href="tel:${esc(site.mobileHref)}">${esc(site.mobile)}</a> · ${esc(site.location)}</p>`,
     '</div>',
   ].join('')
 }

@@ -45,4 +45,4 @@ Projects and articles are sample content. Each project card carries a "Demonstra
 
 ## Contact facts
 
-Email, phone, and social handles are placeholders stored in `src/data/site.js` and marked visibly in the interface until replaced. The form stores nothing and sends nothing by itself.
+Email, telephone, and mobile number are real details stored in `src/data/site.js`. Social handles are still placeholders. The form stores nothing and sends nothing by itself.

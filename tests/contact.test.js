@@ -21,11 +21,13 @@ describe('Contact page', () => {
     const email = wrapper.get('#contact-details a[data-email]')
     expect(email.attributes('href')).toBe(`mailto:${site.email}`)
     const phone = wrapper.get('#contact-details a[data-phone]')
-    expect(phone.attributes('href')).toBe(`tel:${site.phone.replace(/[^+\d]/g, '')}`)
+    expect(phone.attributes('href')).toBe(`tel:${site.phoneHref}`)
+    const mobile = wrapper.get('#contact-details a[data-mobile]')
+    expect(mobile.attributes('href')).toBe(`tel:${site.mobileHref}`)
   })
 
-  it('marks placeholder contact details visibly', () => {
-    expect(wrapper.text()).toContain(site.placeholderNote)
+  it('does not show launch placeholder copy', () => {
+    expect(wrapper.text()).not.toMatch(/placeholder/i)
   })
 
   it('explains what happens after someone writes in', () => {
