@@ -13,7 +13,7 @@ import { img } from '../../lib/images'
 
       <div>
         <SectionHeading
-          eyebrow="Why Sol Digital"
+          eyebrow="Why Kayna Digital Solutions"
           title="Technology that works around your business."
           lead="Not the other way around. The tools should follow how your team already succeeds, then remove the parts that slow them down."
         />

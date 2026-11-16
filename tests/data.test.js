@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { nav, site, SITE_URL } from '../src/data/site'
+import { pages } from '../src/data/pages'
 import { services } from '../src/data/services'
 import { solutions } from '../src/data/solutions'
 import { projects, projectsNote } from '../src/data/projects'
@@ -40,8 +41,21 @@ const allCopy = JSON.stringify({ site, services, solutions, projects, projectsNo
 const words = (text) => text.trim().split(/\s+/).filter(Boolean).length
 
 describe('site', () => {
-  it('uses an absolute https origin', () => {
-    expect(SITE_URL).toBe('https://soldigital.com')
+  it('uses the Kayna origin', () => {
+    expect(SITE_URL).toBe('https://kaynasolutions.com')
+  })
+
+  it('uses the Kayna brand names', () => {
+    expect(site.name).toBe('Kayna Digital Solutions')
+    expect(site.shortName).toBe('Kayna')
+    expect(site.descriptor).toBe('Digital Solutions')
+  })
+
+  it('puts the Kayna name in every page title within the build limit', () => {
+    for (const page of pages) {
+      expect(page.title).toContain('Kayna Digital Solutions')
+      expect(page.title.length).toBeLessThanOrEqual(65)
+    }
   })
 
   it('has the seven navigation entries in order', () => {

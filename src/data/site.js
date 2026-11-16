@@ -1,11 +1,13 @@
-export const SITE_URL = 'https://soldigital.com'
+export const SITE_URL = 'https://kaynasolutions.com'
 
 export const site = {
-  name: 'Sol Digital',
+  name: 'Kayna Digital Solutions',
+  shortName: 'Kayna',
+  descriptor: 'Digital Solutions',
   tagline: 'Better business starts with better systems.',
   positioning: 'Big-business capabilities, practical solutions for growing businesses.',
   description:
-    'Sol Digital helps Philippine businesses simplify operations with practical software, automation, and connected systems.',
+    'Kayna Digital Solutions helps Philippine businesses simplify operations with practical software, automation, and connected systems.',
   email: 'joshuakyle.malitig@gmail.com',
   phone: '(043) 756 8818',
   phoneHref: '+63437568818',

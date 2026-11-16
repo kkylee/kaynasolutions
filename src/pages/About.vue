@@ -17,7 +17,7 @@ onMounted(() => {
 <template>
   <MainLayout>
     <PageHeader
-      eyebrow="About Sol Digital"
+      eyebrow="About Kayna Digital Solutions"
       title="A practical technology partner for growing businesses."
       lead="We help teams replace spreadsheets, chat threads, and guesswork with systems that fit how they already work — and keep fitting as they grow."
       :image="img('about-collaboration')"
