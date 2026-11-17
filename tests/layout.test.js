@@ -126,6 +126,8 @@ describe('SiteFooter', () => {
     expect(wrapper.find(`a[href="tel:${site.phoneHref}"]`).exists()).toBe(true)
     expect(wrapper.find(`a[href="tel:${site.mobileHref}"]`).exists()).toBe(true)
     expect(wrapper.text()).not.toMatch(/placeholder/i)
+    expect(wrapper.text()).toMatch(/DTI Registered/i)
+    expect(wrapper.text()).toMatch(/Business Name No\. 8623505/i)
   })
 
   it('links to the supplied social profiles safely', () => {

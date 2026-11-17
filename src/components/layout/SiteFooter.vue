@@ -4,6 +4,7 @@ import { services } from '../../data/services'
 import Wordmark from './Wordmark.vue'
 
 const year = new Date().getFullYear()
+const dtiLogo = '/brand/dti-logo.png'
 </script>
 
 <template>
@@ -12,6 +13,21 @@ const year = new Date().getFullYear()
       <div>
         <Wordmark />
         <p class="mt-5 max-w-xs text-sm leading-relaxed text-body">{{ site.tagline }}</p>
+        <div class="mt-6 flex items-center gap-3">
+          <img
+            :src="dtiLogo"
+            alt="DTI Registered Business Name Number 8623505"
+            width="185"
+            height="86"
+            loading="lazy"
+            decoding="async"
+            class="h-10 w-auto shrink-0"
+          />
+          <p class="text-xs leading-relaxed text-body">
+            DTI Registered<br />
+            Business Name No. 8623505
+          </p>
+        </div>
       </div>
 
       <nav aria-label="Footer pages">
