@@ -20,10 +20,21 @@ describe('Contact page', () => {
   it('shows direct contact details as working links', () => {
     const email = wrapper.get('#contact-details a[data-email]')
     expect(email.attributes('href')).toBe(`mailto:${site.email}`)
+    expect(email.text()).toBe('info@kaynasolutions.com')
     const phone = wrapper.get('#contact-details a[data-phone]')
     expect(phone.attributes('href')).toBe(`tel:${site.phoneHref}`)
     const mobile = wrapper.get('#contact-details a[data-mobile]')
     expect(mobile.attributes('href')).toBe(`tel:${site.mobileHref}`)
+  })
+
+  it('shows the supplied social profiles as safe external links', () => {
+    for (const social of site.socials) {
+      const link = wrapper.get(`#contact-details a[href="${social.href}"]`)
+      expect(link.text()).toBe(social.label)
+      expect(link.attributes('target')).toBe('_blank')
+      expect(link.attributes('rel')).toContain('noopener')
+      expect(link.attributes('rel')).toContain('noreferrer')
+    }
   })
 
   it('does not show launch placeholder copy', () => {

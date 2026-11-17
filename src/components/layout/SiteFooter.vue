@@ -57,15 +57,14 @@ const year = new Date().getFullYear()
         <ul class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm">
           <li v-for="social in site.socials" :key="social.label">
             <a
-              v-if="social.href !== '#'"
               :href="social.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`${social.label} (opens in a new tab)`"
               class="text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
             >
               {{ social.label }}
             </a>
-            <span v-else class="text-slate-ink">
-              {{ social.label }} <span class="text-xs">(link to be added)</span>
-            </span>
           </li>
         </ul>
       </div>

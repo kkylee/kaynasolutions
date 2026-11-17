@@ -1,55 +1,56 @@
 # Kayna Digital Solutions brand assets
 
-The mark is a stylised K/Y formed from two rounded gradient strokes — purple on the left, blue on the right — with a cyan dot above the joint. It reads as a person with raised arms and as the K in Kayna. The wordmark is set in Manrope: **Kayna** at 700 and **SOLUTIONS** at 500 with wide letter spacing.
+The supplied profile icon is the source of truth. It shows the gradient K/Y mark with the cyan dot, centred on the deep navy field. The artwork is used as supplied — it is not redrawn.
 
-The SVGs embed the Manrope variable font so the wordmark renders accurately without an installed font. PNGs are provided for tools that do not accept SVG.
+The file has generous navy margins around the mark. `scripts/make-brand.mjs` crops a centred 1024 × 1024 window so the mark stays optically correct at every size, from the 32 px favicon to the 120 px Open Graph lockup.
+
+The header and footer pair the icon with live typography: **Kayna** in Manrope 700 and **Digital Solutions** in Inter 500. This keeps the wordmark sharp at every breakpoint and consistent with the rest of the site.
 
 ## Files
 
 | File | Use |
 | --- | --- |
-| `kayna-logo.svg` | Primary horizontal lockup on light backgrounds. Transparent. |
-| `kayna-logo-compact.svg` | Mark plus “Kayna”, used below the `sm` breakpoint in the header. |
-| `kayna-logo-inverse.svg` | Lockup with white lettering for navy or other dark backgrounds. |
-| `kayna-mark.svg` | Mark only, on a transparent background. |
-| `kayna-mark-inverse.svg` | Mark only in white, for dark backgrounds. |
-| `kayna-mark-dark.svg` | Wide navy field with concentric rings and the gradient mark. |
-| `kayna-avatar.svg` | Square social avatar: navy field with the gradient mark and rings. |
-| `png/kayna-logo-1600.png` | 1600 px transparent PNG of the primary lockup. |
-| `png/kayna-logo-inverse-1600.png` | 1600 px transparent PNG of the inverse lockup. |
-| `png/kayna-mark-512.png` | 512 px mark. |
-| `png/kayna-mark-1024.png` | 1024 px mark. |
-| `png/kayna-mark-inverse-1024.png` | 1024 px inverse mark. |
-| `png/kayna-mark-dark-1600.png` | 1600 px navy field with rings and the gradient mark. |
-| `png/kayna-avatar-1024.png` | 1024 px social avatar. |
+| `kayna-icon-master.png` | The supplied 2048 × 2048 profile icon. Do not edit. |
+| `png/kayna-icon-1024.png` | 1024 × 1024 centred crop used as the logo source. |
+| `kayna-logo.svg` | Horizontal lockup on light surfaces: supplied icon + live Manrope/Inter type. |
+| `kayna-logo-inverse.svg` | The same lockup with light lettering for dark surfaces. |
+| `png/kayna-icon-512.png` | 512 px app/social icon. |
+| `png/kayna-logo-1600.png` | 1600 px PNG of the light lockup. |
+| `png/kayna-logo-inverse-1600.png` | 1600 px PNG of the inverse lockup. |
 
-Regenerate every asset with `npm run brand`. The script also writes the site favicon, public logo variants, and the Open Graph image.
+The site uses `public/brand/kayna-icon.png` in the header and footer, `public/favicon-32.png` and `public/favicon-192.png` for browser icons, and `public/apple-touch-icon.png` for iOS.
+
+Regenerate every asset with `npm run brand`. The script also writes the Open Graph image at `public/og/og-default.png`.
 
 ## Colours
 
 | Name | Hex | Role |
 | --- | --- | --- |
-| Navy | `#101D35` | Primary text, site surfaces |
-| Deep navy | `#1B2A5B` | Wordmark, avatar field |
-| Purple | `#4B2EE6` | Left gradient stroke |
-| Blue | `#2F62E3` | Right gradient stroke, site accent |
-| Cyan | `#00AEEF` | Dot above the mark |
-| Slate | `#64748B` | “SOLUTIONS” descriptor |
+| Icon field | `#232156` | Background supplied in the profile icon |
+| Site navy | `#101D35` | Headings, header text, OG background |
+| Blue | `#2563EB` | Site accent |
+| Teal | `#14B8A6` | Site accent |
+| Slate | `#475569` | Descriptor text |
+| White | `#FFFFFF` | Light surfaces and inverse type |
+
+The icon’s own purple-to-blue gradient and cyan dot are part of the supplied mark and should not be recoloured.
 
 ## Typography
 
-- **Manrope** (variable) — wordmark and display headings.
-- **Inter** (variable) — body copy and interface text.
+- **Manrope Variable** — “Kayna”, headings, and display text.
+- **Inter Variable** — “Digital Solutions”, body copy, and interface text.
+
+Both are loaded from the site’s self-hosted font packages. The logo SVGs embed the same two fonts so they render correctly in tools without the fonts installed.
 
 ## Usage
 
-- Use the primary lockup on white or paper-coloured surfaces.
+- Use the icon for favicons, app icons, and tight spaces.
+- Use the horizontal lockup on white or paper-coloured surfaces.
 - Use the inverse lockup on navy and other dark surfaces.
-- Use the mark alone for favicons, app icons, and tight spaces.
-- Keep the mark's proportions and internal spacing intact.
-- Do not stretch, rotate, recolour, or place the lockup over busy photography.
+- Keep the icon square; do not stretch, rotate, or crop into the mark.
+- Do not recolour the mark or place the lockup over busy photography.
 
 ## Notes
 
 - `kaynasolutions.com` in the site metadata is a placeholder, not a confirmed domain.
-- The site favicon (`public/favicon.svg`) is the app-icon version of the mark.
+- `public/favicon.svg` is intentionally gone; the site uses PNG favicons generated from the supplied icon.

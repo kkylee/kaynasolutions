@@ -74,10 +74,25 @@ describe('site', () => {
 
   it('exposes the real contact details', () => {
     expect(site.isPlaceholder).toBe(false)
-    expect(site.email).toBe('joshuakyle.malitig@gmail.com')
+    expect(site.email).toBe('info@kaynasolutions.com')
     expect(site.phone).toBe('(043) 756 8818')
     expect(site.mobile).toBe('+63 977 400 9654')
     expect(site.location).toBe('Philippines')
+  })
+
+  it('uses the supplied Facebook and LinkedIn profiles', () => {
+    expect(site.socials).toEqual([
+      {
+        label: 'Facebook',
+        href: 'https://www.facebook.com/people/Kayna-Solutions/61596784974684/',
+        icon: 'Facebook',
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/company/kayna-solutions',
+        icon: 'Linkedin',
+      },
+    ])
   })
 })
 

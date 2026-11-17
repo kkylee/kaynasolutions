@@ -103,6 +103,16 @@ for (const page of pages) {
           if (!data[key]) fail(`${label} — JSON-LD missing "${key}"`)
         }
         if (data.url !== SITE_URL) fail(`${label} — JSON-LD url "${data.url}" ≠ "${SITE_URL}"`)
+        if (data.email !== site.email) fail(`${label} — JSON-LD email does not match site.email`)
+        if (!Array.isArray(data.sameAs)) {
+          fail(`${label} — JSON-LD missing sameAs social profiles`)
+        } else {
+          for (const social of site.socials) {
+            if (!data.sameAs.includes(social.href)) {
+              fail(`${label} — JSON-LD sameAs missing ${social.href}`)
+            }
+          }
+        }
       } catch (error) {
         fail(`${label} — JSON-LD is not valid JSON (${error.message})`)
       }

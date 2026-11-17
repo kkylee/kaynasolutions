@@ -6,32 +6,65 @@ const root = path.resolve(__dirname, '..')
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8')
 const exists = (file) => fs.existsSync(path.join(root, file))
 
+const pageFiles = [
+  'index.html',
+  'services/index.html',
+  'solutions/index.html',
+  'about/index.html',
+  'portfolio/index.html',
+  'insights/index.html',
+  'contact/index.html',
+]
+
 describe('Kayna brand assets', () => {
-  it('uses the new name in the favicon and logo pack', () => {
-    expect(read('public/favicon.svg')).toContain('aria-label="Kayna Digital Solutions"')
-    expect(read('brand/kayna-logo.svg')).toContain('Kayna')
-    expect(read('brand/kayna-logo.svg')).toContain('SOLUTIONS')
-    expect(read('brand/kayna-logo-inverse.svg')).toContain('Kayna')
+  it('uses the supplied profile icon as the logo master', () => {
+    expect(exists('brand/kayna-icon-master.png')).toBe(true)
+    expect(exists('brand/png/kayna-icon-1024.png')).toBe(true)
+    expect(exists('brand/png/kayna-icon-512.png')).toBe(true)
+    expect(exists('public/brand/kayna-icon.png')).toBe(true)
   })
 
-  it('ships the compact, public, and dark-mark logo variants', () => {
-    expect(exists('brand/kayna-logo-compact.svg')).toBe(true)
-    expect(exists('public/brand/kayna-logo.svg')).toBe(true)
-    expect(exists('public/brand/kayna-logo-compact.svg')).toBe(true)
-    expect(read('brand/kayna-mark-dark.svg')).toContain('#1B2A5B')
-    expect(exists('public/brand/kayna-mark-dark.svg')).toBe(true)
+  it('ships PNG favicons and the Apple touch icon', () => {
+    expect(exists('public/favicon-32.png')).toBe(true)
+    expect(exists('public/favicon-192.png')).toBe(true)
+    expect(exists('public/apple-touch-icon.png')).toBe(true)
   })
 
-  it('uses the package name and no old Sol brand files', () => {
-    expect(read('package.json')).toContain('"name": "kayna-digital-solutions"')
-    expect(exists('brand/sol-digital-logo.svg')).toBe(false)
+  it('links the supplied icon favicons from every page', () => {
+    for (const file of pageFiles) {
+      const html = read(file)
+      expect(html).toContain('href="/favicon-32.png"')
+      expect(html).toContain('href="/favicon-192.png"')
+      expect(html).toContain('href="/apple-touch-icon.png"')
+      expect(html).not.toContain('/favicon.svg')
+    }
   })
 
-  it('uses the Kayna name and tagline in the Open Graph image', () => {
+  it('builds the logo lockup from the supplied icon and standard type', () => {
+    const logo = read('brand/kayna-logo.svg')
+    expect(logo).toContain('data:image/png;base64,')
+    expect(logo).toContain('font-family="Manrope"')
+    expect(logo).toContain('font-family="Inter"')
+    expect(logo).toContain('Kayna')
+    expect(logo).toContain('Digital Solutions')
+    expect(logo).not.toContain('>SOLUTIONS<')
+    expect(read('brand/kayna-logo-inverse.svg')).toContain('data:image/png;base64,')
+  })
+
+  it('uses the supplied icon and the full brand name in the Open Graph image', () => {
     const og = read('public/og/og-default.svg')
+    expect(og).toContain('data:image/png;base64,')
     expect(og).toContain('<title>Kayna Digital Solutions')
     expect(og).toContain('Better business starts with better systems.')
+    expect(og).toContain('Digital Solutions')
     expect(exists('public/og/og-default.png')).toBe(true)
+  })
+
+  it('uses the package name and no old or unused brand files', () => {
+    expect(read('package.json')).toContain('"name": "kayna-digital-solutions"')
+    expect(exists('public/favicon.svg')).toBe(false)
+    expect(exists('brand/kayna-mark-dark.svg')).toBe(false)
+    expect(exists('public/brand/kayna-logo.svg')).toBe(false)
   })
 
   it('points robots.txt at the Kayna sitemap', () => {

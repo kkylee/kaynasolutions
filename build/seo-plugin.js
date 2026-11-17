@@ -21,6 +21,7 @@ function jsonLd() {
     email: site.email,
     telephone: site.mobileHref,
     areaServed: 'Philippines',
+    sameAs: site.socials.map((social) => social.href).filter((href) => href && href !== '#'),
   }
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`
 }

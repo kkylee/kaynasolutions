@@ -32,14 +32,18 @@ afterEach(() => {
 })
 
 describe('Wordmark', () => {
-  it('shows the supplied Kayna logo with an accessible name', () => {
+  it('pairs the supplied icon with a live, standard typographic lockup', () => {
     const wrapper = mount(Wordmark)
-    const images = wrapper.findAll('img')
-    expect(images.length).toBeGreaterThan(0)
-    for (const image of images) {
-      expect(image.attributes('alt')).toBe(site.name)
-      expect(image.attributes('src')).toContain('kayna-logo')
-    }
+    const image = wrapper.get('img')
+    expect(image.attributes('src')).toBe('/brand/kayna-icon.png')
+    expect(image.attributes('alt')).toBe('')
+    expect(image.attributes('width')).toBe('40')
+    expect(image.attributes('height')).toBe('40')
+    expect(wrapper.text()).toContain('Kayna')
+    expect(wrapper.text()).toContain('Digital Solutions')
+    expect(wrapper.find('.font-display').exists()).toBe(true)
+    expect(wrapper.find('.font-body').exists()).toBe(true)
+    expect(wrapper.find('.whitespace-nowrap').exists()).toBe(true)
   })
 })
 
@@ -99,6 +103,8 @@ describe('SiteHeader', () => {
     const talk = wrapper.findAll('a').find((link) => link.text().includes("Let's talk"))
     expect(talk).toBeTruthy()
     expect(talk.attributes('href')).toBe('/contact/')
+    expect(talk.element.parentElement.className).toContain('hidden')
+    expect(talk.element.parentElement.className).toContain('sm:block')
     const trigger = wrapper.get('button[aria-controls="mobile-nav"]')
     expect(trigger.classes().join(' ')).toContain('min-h-11')
     expect(trigger.classes().join(' ')).toContain('min-w-11')
@@ -113,6 +119,17 @@ describe('SiteFooter', () => {
     expect(wrapper.find(`a[href="tel:${site.phoneHref}"]`).exists()).toBe(true)
     expect(wrapper.find(`a[href="tel:${site.mobileHref}"]`).exists()).toBe(true)
     expect(wrapper.text()).not.toMatch(/placeholder/i)
+  })
+
+  it('links to the supplied social profiles safely', () => {
+    const wrapper = mount(SiteFooter)
+    for (const social of site.socials) {
+      const link = wrapper.get(`a[href="${social.href}"]`)
+      expect(link.text()).toBe(social.label)
+      expect(link.attributes('target')).toBe('_blank')
+      expect(link.attributes('rel')).toContain('noopener')
+      expect(link.attributes('rel')).toContain('noreferrer')
+    }
   })
 
   it('links to every page and every service anchor', () => {

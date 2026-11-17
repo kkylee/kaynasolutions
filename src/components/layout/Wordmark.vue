@@ -2,27 +2,32 @@
 defineProps({
   tone: { type: String, default: 'dark' },
 })
+
+const iconSrc = '/brand/kayna-icon.png'
 </script>
 
 <template>
-  <span class="inline-flex items-center">
+  <span class="inline-flex items-center gap-2.5">
     <img
-      v-if="tone === 'light'"
-      src="/brand/kayna-logo-inverse.svg"
-      class="h-8 w-auto"
-      alt="Kayna Digital Solutions"
+      :src="iconSrc"
+      alt=""
+      width="40"
+      height="40"
+      class="h-10 w-10 shrink-0 rounded-lg object-cover shadow-sm ring-1 ring-navy/10"
     />
-    <template v-else>
-      <img
-        src="/brand/kayna-logo-compact.svg"
-        class="h-8 w-auto sm:hidden"
-        alt="Kayna Digital Solutions"
-      />
-      <img
-        src="/brand/kayna-logo.svg"
-        class="hidden h-8 w-auto sm:block"
-        alt="Kayna Digital Solutions"
-      />
-    </template>
+    <span class="flex flex-col justify-center whitespace-nowrap leading-none">
+      <span
+        class="font-display text-xl font-bold leading-none tracking-[-0.03em]"
+        :class="tone === 'light' ? 'text-white' : 'text-navy'"
+      >
+        Kayna
+      </span>
+      <span
+        class="mt-1 font-body text-xs font-medium leading-none"
+        :class="tone === 'light' ? 'text-slate-200' : 'text-slate-ink'"
+      >
+        Digital Solutions
+      </span>
+    </span>
   </span>
 </template>

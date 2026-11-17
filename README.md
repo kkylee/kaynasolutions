@@ -22,7 +22,7 @@ A seven-page static corporate website for Kayna Digital Solutions, built with Vu
 | `npm run check:dist` | Validate the built output (SEO, links, alt text, budgets) |
 | `npm run check` | Build, test, then validate `dist/` — the full gate |
 | `npm run images` | Download and convert the licensed photography |
-| `npm run brand` | Regenerate the logo pack, favicon, public logo variants, and OG image |
+| `npm run brand` | Regenerate the icon sizes, favicons, logo lockups, and OG image from the supplied profile icon |
 | `npm run og` | Regenerate `public/og/og-default.png` from the SVG |
 
 Run `npm run check` before any deployment. It fails on broken internal links, missing metadata, missing image dimensions, duplicate IDs, a missing `<noscript>` fallback, oversized JS, or a broken sitemap.
@@ -30,9 +30,9 @@ Run `npm run check` before any deployment. It fails on broken internal links, mi
 ## Structure
 
 ```
-brand/                       logo pack (SVG + PNG) and usage notes
+brand/                       supplied profile icon, generated logo pack, usage notes
 build/seo-plugin.js          Per-page <head>, JSON-LD, <noscript>, sitemap
-public/                      favicon, robots.txt, _headers, OG image
+public/                      favicons, apple-touch-icon, robots.txt, _headers, OG image
 scripts/                     image pipeline, OG generator, dist checks
 src/assets/images/           generated WebP variants (committed)
 src/components/common/       buttons, headings, photos, banners, CTA, timeline
@@ -63,13 +63,13 @@ After editing content, run `npm test` — the data suite checks lengths, uniquen
 
 ### Contact details
 
-The email, telephone, and mobile number are stored in `site.js` and shown in the footer and on the Contact page. `phoneHref` and `mobileHref` hold the international `tel:` values. The social links are still placeholders (`href: '#'`).
+The email, telephone, and mobile number are stored in `site.js` and shown in the footer and on the Contact page. `phoneHref` and `mobileHref` hold the international `tel:` values. The Facebook and LinkedIn links point to the supplied profiles and open in a new tab with `rel="noopener noreferrer"`.
 
 `SITE_URL` in the same file drives canonicals, Open Graph URLs, the sitemap, and JSON-LD. Change it to the final domain before launch. The site name, contact details, and description live in the same file; page titles and descriptions are in `pages.js`.
 
 ### Brand assets
 
-The logo pack is in [`brand/`](brand/) — SVG lockups and marks, transparent PNG exports, and usage rules. See [`brand/README.md`](brand/README.md). The header and footer wordmark is the `Wordmark` component; the favicon and the OG image reuse the same mark geometry.
+The supplied profile icon is the source of truth and lives at [`brand/kayna-icon-master.png`](brand/kayna-icon-master.png). Run `npm run brand` to regenerate the centred icon crops, favicons, Apple touch icon, horizontal lockups, and OG image. See [`brand/README.md`](brand/README.md) for the full asset list and usage rules. The header and footer pair the icon with live Manrope/Inter typography in the `Wordmark` component.
 
 ### Photography
 
@@ -103,7 +103,7 @@ Cloudflare Pages, static output. Full steps, custom domain notes, and rollback i
 
 ## Launch checklist
 
-- [ ] Replace email, phone, location, and social URLs in `src/data/site.js`; set `isPlaceholder: false`
+- [ ] Confirm the email, phone, location, and Facebook/LinkedIn URLs in `src/data/site.js` before launch
 - [ ] Set `SITE_URL` to the production domain (with no trailing slash) and update the `Sitemap:` line in `public/robots.txt`
 - [ ] Review every demonstration label (portfolio, insights, footer, banners)
 - [ ] Run `npm run check` and confirm the PASS line plus budgets

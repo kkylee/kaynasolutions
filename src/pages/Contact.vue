@@ -75,6 +75,22 @@ onMounted(() => {
                 <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-ink">Based in</dt>
                 <dd class="mt-0.5 text-navy">{{ site.location }}</dd>
               </div>
+              <div>
+                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-ink">Social</dt>
+                <dd class="mt-1 flex flex-wrap gap-x-4 gap-y-2">
+                  <a
+                    v-for="social in site.socials"
+                    :key="social.label"
+                    :href="social.href"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :aria-label="`${social.label} (opens in a new tab)`"
+                    class="inline-flex min-h-6 items-center text-navy underline decoration-navy/30 underline-offset-4 hover:decoration-navy"
+                  >
+                    {{ social.label }}
+                  </a>
+                </dd>
+              </div>
             </dl>
           </div>
 

@@ -8,7 +8,7 @@ export const site = {
   positioning: 'Big-business capabilities, practical solutions for growing businesses.',
   description:
     'Kayna Digital Solutions helps Philippine businesses simplify operations with practical software, automation, and connected systems.',
-  email: 'joshuakyle.malitig@gmail.com',
+  email: 'info@kaynasolutions.com',
   phone: '(043) 756 8818',
   phoneHref: '+63437568818',
   mobile: '+63 977 400 9654',
@@ -16,8 +16,16 @@ export const site = {
   location: 'Philippines',
   isPlaceholder: false,
   socials: [
-    { label: 'Facebook', href: '#', icon: 'Facebook' },
-    { label: 'LinkedIn', href: '#', icon: 'Linkedin' },
+    {
+      label: 'Facebook',
+      href: 'https://www.facebook.com/people/Kayna-Solutions/61596784974684/',
+      icon: 'Facebook',
+    },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/company/kayna-solutions',
+      icon: 'Linkedin',
+    },
   ],
   audiences: [
     'Retail and local shops',

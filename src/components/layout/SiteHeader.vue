@@ -48,7 +48,9 @@ async function close() {
       </nav>
 
       <div class="flex items-center gap-2">
-        <BaseButton class="hidden sm:inline-flex" href="/contact/" label="Let's talk" />
+        <div class="hidden sm:block">
+          <BaseButton href="/contact/" label="Let's talk" />
+        </div>
         <button
           ref="trigger"
           type="button"
