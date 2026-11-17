@@ -13,10 +13,10 @@ const systems = [
   <MockFrame title="Systems — Connections">
     <div class="flex items-end justify-between gap-3">
       <div>
-        <p class="text-sm font-semibold text-navy">Connections</p>
-        <p class="text-[0.6875rem] text-slate-ink">4 systems · one owner per record</p>
+        <p class="text-sm font-semibold text-ink">Connections</p>
+        <p class="text-[0.6875rem] text-body">4 systems · one owner per record</p>
       </div>
-      <span class="rounded-full bg-teal/15 px-2.5 py-1 text-[0.625rem] font-semibold text-navy">
+      <span class="rounded-full bg-signal/15 px-2.5 py-1 text-[0.625rem] font-semibold text-ink">
         Healthy
       </span>
     </div>
@@ -25,24 +25,24 @@ const systems = [
       <li
         v-for="system in systems"
         :key="system.name"
-        class="flex items-center gap-3 rounded-lg border border-navy/10 bg-white px-3 py-2.5"
+        class="flex items-center gap-3 rounded-lg border border-line bg-surface px-3 py-2.5"
       >
         <span
           class="h-2 w-2 flex-none rounded-full"
-          :class="system.state === 'Synced' ? 'bg-teal' : 'bg-blue'"
+          :class="system.state === 'Synced' ? 'bg-signal' : 'bg-action'"
         />
         <div class="min-w-0 flex-1">
-          <p class="text-xs font-semibold text-navy">{{ system.name }}</p>
-          <p class="truncate text-[0.625rem] text-slate-ink">{{ system.role }}</p>
+          <p class="text-xs font-semibold text-ink">{{ system.name }}</p>
+          <p class="truncate text-[0.625rem] text-body">{{ system.role }}</p>
         </div>
         <div class="text-right">
           <p
             class="text-[0.625rem] font-semibold"
-            :class="system.state === 'Synced' ? 'text-slate-ink' : 'text-blue'"
+            :class="system.state === 'Synced' ? 'text-body' : 'text-link'"
           >
             {{ system.state }}
           </p>
-          <p class="text-[0.625rem] tabular-nums text-slate-ink">{{ system.when }}</p>
+          <p class="text-[0.625rem] tabular-nums text-body">{{ system.when }}</p>
         </div>
       </li>
     </ul>

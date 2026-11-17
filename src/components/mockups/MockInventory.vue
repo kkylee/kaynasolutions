@@ -15,10 +15,10 @@ const fill = (item) => `${Math.min(100, Math.round((item.onHand / item.target) *
   <MockFrame title="Inventory — Stock on hand">
     <div class="flex items-end justify-between gap-3">
       <div>
-        <p class="text-sm font-semibold text-navy">Stock on hand</p>
-        <p class="text-[0.6875rem] text-slate-ink">Main branch · updated 5 min ago</p>
+        <p class="text-sm font-semibold text-ink">Stock on hand</p>
+        <p class="text-[0.6875rem] text-body">Main branch · updated 5 min ago</p>
       </div>
-      <span class="rounded-full bg-navy/5 px-2.5 py-1 text-[0.625rem] font-semibold text-navy">
+      <span class="rounded-full bg-ink/5 px-2.5 py-1 text-[0.625rem] font-semibold text-ink">
         3 of 412 items
       </span>
     </div>
@@ -29,7 +29,7 @@ const fill = (item) => `${Math.min(100, Math.round((item.onHand / item.target) *
           Sample stock records from a demonstration inventory management system
         </caption>
         <thead>
-          <tr class="text-[0.625rem] uppercase tracking-[0.12em] text-slate-ink">
+          <tr class="text-[0.625rem] uppercase tracking-[0.12em] text-body">
             <th scope="col" class="pb-2 font-semibold">Item</th>
             <th scope="col" class="pb-2 font-semibold">On hand</th>
             <th scope="col" class="pb-2 font-semibold">Reorder</th>
@@ -37,28 +37,28 @@ const fill = (item) => `${Math.min(100, Math.round((item.onHand / item.target) *
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in items" :key="item.sku" class="border-t border-navy/5">
+          <tr v-for="item in items" :key="item.sku" class="border-t border-line/70">
             <td class="py-2.5">
-              <span class="font-medium text-navy">{{ item.name }}</span>
-              <span class="block text-[0.625rem] tabular-nums text-slate-ink">{{ item.sku }}</span>
+              <span class="font-medium text-ink">{{ item.name }}</span>
+              <span class="block text-[0.625rem] tabular-nums text-body">{{ item.sku }}</span>
             </td>
             <td class="py-2.5">
-              <span class="block tabular-nums text-navy">{{ item.onHand }}</span>
-              <span class="mt-1 block h-1 w-16 overflow-hidden rounded-full bg-navy/10">
+              <span class="block tabular-nums text-ink">{{ item.onHand }}</span>
+              <span class="mt-1 block h-1 w-16 overflow-hidden rounded-full bg-line">
                 <span
                   class="block h-1 rounded-full"
-                  :class="low(item) ? 'bg-blue' : 'bg-teal'"
+                  :class="low(item) ? 'bg-action' : 'bg-signal'"
                   :style="{ width: fill(item) }"
                 />
               </span>
             </td>
-            <td class="py-2.5 tabular-nums text-slate-ink">{{ item.reorder }}</td>
+            <td class="py-2.5 tabular-nums text-body">{{ item.reorder }}</td>
             <td class="py-2.5 text-right">
               <span
                 class="inline-flex items-center gap-1.5 text-[0.625rem] font-semibold"
-                :class="low(item) ? 'text-blue' : 'text-slate-ink'"
+                :class="low(item) ? 'text-link' : 'text-body'"
               >
-                <span :class="['h-1.5 w-1.5 rounded-full', low(item) ? 'bg-blue' : 'bg-teal']" />
+                <span :class="['h-1.5 w-1.5 rounded-full', low(item) ? 'bg-action' : 'bg-signal']" />
                 {{ low(item) ? 'Low stock' : 'In stock' }}
               </span>
             </td>

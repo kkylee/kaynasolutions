@@ -71,6 +71,12 @@ The email, telephone, and mobile number are stored in `site.js` and shown in the
 
 The supplied profile icon is the source of truth and lives at [`brand/kayna-icon-master.png`](brand/kayna-icon-master.png). Run `npm run brand` to regenerate the centred icon crops, favicons, Apple touch icon, horizontal lockups, and OG image. See [`brand/README.md`](brand/README.md) for the full asset list and usage rules. The header and footer pair the icon with live Manrope/Inter typography in the `Wordmark` component.
 
+### Theme
+
+The site follows the visitor's operating-system light/dark preference by default. The header toggle switches themes, stores the explicit choice under `kayna-theme`, and updates the root class, `data-theme`, `color-scheme`, and browser `theme-color`. An inline script injected by `build/seo-plugin.js` applies the stored choice before first paint, so reloading never flashes the wrong theme.
+
+Theme values live in `src/styles/main.css` as semantic tokens. Components use roles such as `bg-surface`, `text-body`, `border-line`, `bg-action`, `text-link`, and `bg-deep`, not raw brand colors. Deep navy panels keep white text and use `text-signal-bright` for teal details.
+
 ### Photography
 
 The image manifest at `scripts/images.manifest.json` records the Pexels photo ID, photographer, licence, aspect ratio, and alt text for every image. To add one:

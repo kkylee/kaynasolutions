@@ -23,24 +23,24 @@ const bars = [
   <MockFrame title="Reports — Daily overview">
     <div class="flex items-end justify-between gap-3">
       <div>
-        <p class="text-sm font-semibold text-navy">Daily overview</p>
-        <p class="text-[0.6875rem] text-slate-ink">All branches · compared with last week</p>
+        <p class="text-sm font-semibold text-ink">Daily overview</p>
+        <p class="text-[0.6875rem] text-body">All branches · compared with last week</p>
       </div>
-      <span class="rounded-full bg-teal/15 px-2.5 py-1 text-[0.625rem] font-semibold text-navy">
+      <span class="rounded-full bg-signal/15 px-2.5 py-1 text-[0.625rem] font-semibold text-ink">
         Updated 06:00
       </span>
     </div>
 
     <dl class="mt-4 grid grid-cols-2 gap-2.5">
-      <div v-for="kpi in kpis" :key="kpi.label" data-kpi class="rounded-lg border border-navy/10 bg-white px-3 py-2.5">
-        <dt class="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-slate-ink">
+      <div v-for="kpi in kpis" :key="kpi.label" data-kpi class="rounded-lg border border-line bg-surface px-3 py-2.5">
+        <dt class="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-body">
           {{ kpi.label }}
         </dt>
         <dd class="mt-1 flex items-baseline gap-2">
-          <span class="text-base font-semibold tabular-nums text-navy">{{ kpi.value }}</span>
+          <span class="text-base font-semibold tabular-nums text-ink">{{ kpi.value }}</span>
           <span
             class="text-[0.625rem] font-semibold tabular-nums"
-            :class="kpi.trend === 'up' ? 'text-teal-700' : kpi.trend === 'down' ? 'text-blue' : 'text-slate-ink'"
+            :class="kpi.trend === 'up' ? 'text-signal' : kpi.trend === 'down' ? 'text-link' : 'text-body'"
           >
             {{ kpi.change }}
           </span>
@@ -48,8 +48,8 @@ const bars = [
       </div>
     </dl>
 
-    <div class="mt-4 rounded-lg border border-navy/10 bg-white px-3 pb-2 pt-3">
-      <p class="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-slate-ink">Sales by day</p>
+    <div class="mt-4 rounded-lg border border-line bg-surface px-3 pb-2 pt-3">
+      <p class="text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-body">Sales by day</p>
       <svg viewBox="0 0 280 80" class="mt-2 h-24 w-full" role="img" aria-label="Sample weekly sales bar chart">
         <g>
           <rect
@@ -60,7 +60,7 @@ const bars = [
             width="26"
             :height="bar.height"
             rx="3"
-            :class="index === 4 ? 'fill-blue' : 'fill-navy/15'"
+            :class="index === 4 ? 'fill-action' : 'fill-line'"
           />
           <text
             v-for="(bar, index) in bars"
@@ -68,7 +68,7 @@ const bars = [
             :x="21 + index * 38"
             y="80"
             text-anchor="middle"
-            class="fill-slate-ink text-[8px]"
+            class="fill-body text-[8px]"
           >
             {{ bar.day }}
           </text>

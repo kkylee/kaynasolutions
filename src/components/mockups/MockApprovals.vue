@@ -30,10 +30,10 @@ const steps = [
   <MockFrame title="Workflow — Purchase request #1042">
     <div class="flex items-end justify-between gap-3">
       <div>
-        <p class="text-sm font-semibold text-navy">Purchase request #1042</p>
-        <p class="text-[0.6875rem] text-slate-ink">Supplier onboarding · 3 steps</p>
+        <p class="text-sm font-semibold text-ink">Purchase request #1042</p>
+        <p class="text-[0.6875rem] text-body">Supplier onboarding · 3 steps</p>
       </div>
-      <span class="rounded-full bg-blue/10 px-2.5 py-1 text-[0.625rem] font-semibold text-navy">
+      <span class="rounded-full bg-action/10 px-2.5 py-1 text-[0.625rem] font-semibold text-ink">
         In review
       </span>
     </div>
@@ -48,20 +48,20 @@ const steps = [
           <span
             :class="[
               'mt-0.5 flex h-4 w-4 items-center justify-center rounded-full border-2',
-              step.state === 'done' ? 'border-teal bg-teal' : 'border-blue bg-white',
+              step.state === 'done' ? 'border-signal bg-signal' : 'border-action bg-surface',
             ]"
           >
             <span v-if="step.state === 'done'" class="h-1.5 w-1.5 rounded-full bg-white" />
           </span>
-          <span v-if="index < steps.length - 1" class="mt-1 w-px flex-1 bg-navy/10" />
+          <span v-if="index < steps.length - 1" class="mt-1 w-px flex-1 bg-line" />
         </div>
         <div class="flex-1">
           <div class="flex flex-wrap items-baseline justify-between gap-x-3">
-            <p class="text-xs font-semibold text-navy">{{ step.title }}</p>
-            <p class="text-[0.625rem] tabular-nums text-slate-ink">{{ step.time }}</p>
+            <p class="text-xs font-semibold text-ink">{{ step.title }}</p>
+            <p class="text-[0.625rem] tabular-nums text-body">{{ step.time }}</p>
           </div>
-          <p class="text-[0.625rem] text-slate-ink">{{ step.who }}</p>
-          <p class="mt-0.5 text-[0.625rem] text-slate-ink">{{ step.note }}</p>
+          <p class="text-[0.625rem] text-body">{{ step.who }}</p>
+          <p class="mt-0.5 text-[0.625rem] text-body">{{ step.note }}</p>
         </div>
       </li>
     </ol>
