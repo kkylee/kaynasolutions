@@ -1,11 +1,79 @@
 @import 'tailwindcss';
 
-@theme {
-  --color-navy: #101d35;
-  --color-blue: #2563eb;
-  --color-teal: #14b8a6;
-  --color-paper: #f8fafc;
-  --color-slate-ink: #475569;
+:root {
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --subtle: #f4f7fb;
+  --ink: #101d35;
+  --body: #475569;
+  --line: #dce5f0;
+  --line-strong: #c4d2e3;
+  --action: #15365c;
+  --action-hover: #0d2947;
+  --link: #174b7a;
+  --link-hover: #0f3457;
+  --signal: #0f766e;
+  --signal-bright: #5eead4;
+  --focus: #2563eb;
+  --deep: #101d35;
+  --deep-raised: #1a3352;
+  --inverse: #ffffff;
+  --inverse-ink: #101d35;
+  --danger: #b42318;
+  --danger-surface: #fef3f2;
+  --danger-line: #fecdca;
+  --shadow-lift-color: 16 29 53;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #071322;
+  --surface: #0d2036;
+  --subtle: #0a192b;
+  --ink: #eef4fb;
+  --body: #b7c5d6;
+  --line: #27415d;
+  --line-strong: #3a5b7d;
+  --action: #2a5584;
+  --action-hover: #35679d;
+  --link: #8dc2f5;
+  --link-hover: #b6d8fb;
+  --signal: #2dd4bf;
+  --signal-bright: #5eead4;
+  --focus: #7cb4ff;
+  --deep: #142c49;
+  --deep-raised: #1b385a;
+  --inverse: #eaf2fc;
+  --inverse-ink: #0a192c;
+  --danger: #fda29b;
+  --danger-surface: #3a1715;
+  --danger-line: #5b2a26;
+  --shadow-lift-color: 0 0 0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-signal: var(--signal);
+  --color-signal-bright: var(--signal-bright);
+  --color-focus: var(--focus);
+  --color-deep: var(--deep);
+  --color-deep-raised: var(--deep-raised);
+  --color-inverse: var(--inverse);
+  --color-inverse-ink: var(--inverse-ink);
+  --color-danger: var(--danger);
+  --color-danger-surface: var(--danger-surface);
+  --color-danger-line: var(--danger-line);
 
   --font-display: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
@@ -13,11 +81,12 @@
   --radius-card: 0.75rem;
   --radius-panel: 1rem;
 
-  --shadow-lift: 0 18px 40px -24px rgb(16 29 53 / 0.35);
+  --shadow-lift: 0 18px 40px -24px rgb(var(--shadow-lift-color) / 0.35);
 }
 
 @layer base {
   html {
+    background: var(--canvas);
     -webkit-text-size-adjust: 100%;
   }
 
@@ -28,7 +97,7 @@
   }
 
   body {
-    @apply bg-white font-body text-slate-ink antialiased;
+    @apply bg-canvas font-body text-body antialiased;
     text-rendering: optimizeLegibility;
   }
 
@@ -36,7 +105,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display text-navy;
+    @apply font-display text-ink;
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
@@ -46,12 +115,13 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-blue);
+    outline: 3px solid var(--focus);
     outline-offset: 2px;
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-teal) 35%, white);
+    background: color-mix(in srgb, var(--signal) 35%, var(--canvas));
+    color: var(--ink);
   }
 
   .container-page {
@@ -63,7 +133,7 @@
   }
 
   .noscript-fallback {
-    @apply mx-auto max-w-[1200px] px-5 py-8 font-body text-slate-ink sm:px-8;
+    @apply mx-auto max-w-[1200px] px-5 py-8 font-body text-body sm:px-8;
   }
 
   .noscript-fallback a {
@@ -90,14 +160,14 @@
 
 @layer components {
   .field {
-    @apply mt-1.5 w-full rounded-lg border border-navy/20 bg-white px-3.5 py-2.5 text-sm text-navy placeholder:text-slate-ink/80 focus:border-blue;
+    @apply mt-1.5 w-full rounded-lg border border-line-strong bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-body/80 focus:border-link;
   }
 
   .field-label {
-    @apply block text-xs font-semibold uppercase tracking-[0.12em] text-navy;
+    @apply block text-xs font-semibold uppercase tracking-[0.12em] text-ink;
   }
 
   .field-error {
-    @apply mt-1.5 text-xs font-medium text-red-600;
+    @apply mt-1.5 text-xs font-medium text-danger;
   }
 }

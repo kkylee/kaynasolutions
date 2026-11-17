@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { pages, pageFor } from '../src/data/pages.js'
 import { SITE_URL, site, nav } from '../src/data/site.js'
+import { THEME_COLORS, themeInitScript } from '../src/lib/theme.js'
 
 const esc = (value) =>
   String(value)
@@ -32,6 +33,9 @@ function headFor(page) {
   return [
     `<title>${esc(page.title)}</title>`,
     `<meta name="description" content="${esc(page.description)}" />`,
+    `<meta name="theme-color" content="${THEME_COLORS.light}" />`,
+    `<meta name="color-scheme" content="light dark" />`,
+    `<script>${themeInitScript()}</script>`,
     `<link rel="canonical" href="${url}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${esc(site.name)}" />`,
