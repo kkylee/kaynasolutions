@@ -73,7 +73,7 @@ The supplied profile icon is the source of truth and lives at [`brand/kayna-icon
 
 ### Theme
 
-The site follows the visitor's operating-system light/dark preference by default. The header toggle switches themes, stores the explicit choice under `kayna-theme`, and updates the root class, `data-theme`, `color-scheme`, and browser `theme-color`. An inline script injected by `build/seo-plugin.js` applies the stored choice before first paint, so reloading never flashes the wrong theme.
+The site defaults to light mode. The header toggle switches themes, stores the explicit choice under `kayna-theme`, and updates the root class, `data-theme`, `color-scheme`, and browser `theme-color`. An inline script injected by `build/seo-plugin.js` applies the stored choice before first paint, so reloading never flashes the wrong theme.
 
 Theme values live in `src/styles/main.css` as semantic tokens. Components use roles such as `bg-surface`, `text-body`, `border-line`, `bg-action`, `text-link`, and `bg-deep`, not raw brand colors. Deep navy panels keep white text and use `text-signal-bright` for teal details.
 

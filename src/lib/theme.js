@@ -9,7 +9,7 @@ const VALID_THEMES = new Set(['light', 'dark'])
 
 export function resolveTheme(stored, systemDark) {
   if (VALID_THEMES.has(stored)) return stored
-  return systemDark ? 'dark' : 'light'
+  return 'light'
 }
 
 export function applyTheme(theme, root = typeof document === 'undefined' ? null : document.documentElement) {
@@ -38,12 +38,9 @@ export function themeInitScript() {
   try {
     var key = ${JSON.stringify(THEME_STORAGE_KEY)};
     var stored = window.localStorage.getItem(key);
-    var systemDark = window.matchMedia
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches
-      : false;
     var theme = stored === 'light' || stored === 'dark'
       ? stored
-      : (systemDark ? 'dark' : 'light');
+      : 'light';
     var root = document.documentElement;
     root.classList.toggle('dark', theme === 'dark');
     root.dataset.theme = theme;

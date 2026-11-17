@@ -17,12 +17,12 @@ describe('resolveTheme', () => {
   })
 
   it('falls back to the system preference without a stored choice', () => {
-    expect(resolveTheme(null, true)).toBe('dark')
+    expect(resolveTheme(null, true)).toBe('light')
     expect(resolveTheme('', false)).toBe('light')
   })
 
   it('ignores unknown stored values', () => {
-    expect(resolveTheme('sepia', true)).toBe('dark')
+    expect(resolveTheme('sepia', true)).toBe('light')
     expect(resolveTheme('sepia', false)).toBe('light')
   })
 })
@@ -126,18 +126,12 @@ describe('ThemeToggle', () => {
     wrapper.unmount()
   })
 
-  it('follows the system preference when no explicit choice exists', async () => {
-    const media = mockThemeMedia({ systemDark: true })
-    document.documentElement.classList.add('dark')
-    document.documentElement.dataset.theme = 'dark'
+  it('defaults to light when no explicit choice exists', async () => {
+    mockThemeMedia({ systemDark: true })
 
     const wrapper = mount(ThemeToggle)
     await nextTick()
     const toggle = wrapper.get('[data-theme-toggle]')
-    expect(toggle.attributes('aria-label')).toBe('Switch to light theme')
-
-    media.setSystemDark(false)
-    await nextTick()
 
     expect(document.documentElement.classList.contains('dark')).toBe(false)
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toBeNull()
@@ -146,16 +140,15 @@ describe('ThemeToggle', () => {
     wrapper.unmount()
   })
 
-  it('keeps an explicit choice when the system preference changes', async () => {
-    const media = mockThemeMedia()
+  it('does not follow system preference changes without an explicit choice', async () => {
+    const media = mockThemeMedia({ systemDark: true })
     const wrapper = mount(ThemeToggle)
 
-    await wrapper.get('[data-theme-toggle]').trigger('click')
     media.setSystemDark(false)
     await nextTick()
 
-    expect(document.documentElement.classList.contains('dark')).toBe(true)
-    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark')
+    expect(document.documentElement.classList.contains('dark')).toBe(false)
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBeNull()
 
     wrapper.unmount()
   })

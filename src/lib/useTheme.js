@@ -29,29 +29,13 @@ export function useTheme() {
   onMounted(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
 
-    media =
-      typeof window.matchMedia === 'function'
-        ? window.matchMedia('(prefers-color-scheme: dark)')
-        : null
-
     const rootTheme = document.documentElement.dataset.theme
     theme.value =
       rootTheme === 'dark' || rootTheme === 'light'
         ? rootTheme
-        : resolveTheme(storedTheme(), Boolean(media?.matches))
+        : resolveTheme(storedTheme())
 
-    if (!media) return
 
-    onChange = (event) => {
-      if (storedTheme()) return
-      theme.value = applyTheme(event.matches ? 'dark' : 'light')
-    }
-
-    if (typeof media.addEventListener === 'function') {
-      media.addEventListener('change', onChange)
-    } else if (typeof media.addListener === 'function') {
-      media.addListener(onChange)
-    }
   })
 
   onBeforeUnmount(() => {

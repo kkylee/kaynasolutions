@@ -60,10 +60,10 @@ Use semantic tokens only. Components should not reach for raw `navy`, `blue`, `t
 
 ## Theme behavior
 
-- Default to the operating system preference.
+- Default to light mode.
 - Before first paint, a tiny inline script reads `localStorage` and applies `dark` plus `data-theme` on `<html>`. This prevents a flash of the wrong theme.
 - A header `ThemeToggle` button switches light/dark, updates the root class, `data-theme`, `color-scheme`, `theme-color` meta, and stores the explicit choice.
-- If no explicit choice exists, follow `prefers-color-scheme` changes live.
+- If no explicit choice exists, the site remains light until the visitor uses the toggle.
 - The toggle is a 44px target with a tooltip and a dynamic accessible label (`Switch to dark theme` / `Switch to light theme`).
 - The same key and boot logic are shared between the inline script and the Vue composable.
 
