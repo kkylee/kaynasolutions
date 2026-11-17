@@ -1,6 +1,6 @@
 # Kayna Digital Solutions
 
-A seven-page static corporate website for Kayna Digital Solutions, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no backend, database, CMS, or admin area.
+A seven-page corporate website for Kayna Digital Solutions, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no database, CMS, or admin area. A single Cloudflare Pages Function handles contact-form delivery through Resend.
 
 **Positioning:** Big-business capabilities, practical solutions for growing businesses.
 **Tagline:** Better business starts with better systems.
@@ -32,7 +32,9 @@ Run `npm run check` before any deployment. It fails on broken internal links, mi
 ```
 brand/                       supplied profile icon, generated logo pack, usage notes
 build/seo-plugin.js          Per-page <head>, JSON-LD, <noscript>, sitemap
+functions/api/contact.js     Contact form endpoint; validates and sends through Resend
 public/                      favicons, apple-touch-icon, robots.txt, _headers, OG image
+.dev.vars.example            Local Wrangler environment template; copy to .dev.vars
 scripts/                     image pipeline, OG generator, dist checks
 src/assets/images/           generated WebP variants (committed)
 src/components/common/       buttons, headings, photos, banners, CTA, timeline
@@ -86,11 +88,21 @@ Variants are generated at 640, 1024, and 1600 px in WebP. The script lowers qual
 
 Portfolio projects and Insights articles are labelled demonstrations in the page copy, in the footer, and on each card. They must never be rewritten to imply real client work without replacing the labels and the `projectsNote` in `src/data/projects.js`. The same applies to screenshots: the system panels are hand-built mockups, not client screenshots.
 
-## Contact form behaviour
+## Contact form delivery
 
-There is no form endpoint. On submit the form validates in the browser, then prepares a `mailto:` link containing the entered details. The visitor can open it in their mail app or copy the text, and they are told plainly that nothing was sent or stored.
+The form posts JSON to `/api/contact`, a Cloudflare Pages Function in `functions/api/contact.js`. The function validates the submission, rejects honeypot spam and unrecognized origins, then sends the enquiry through Resend to `info@kaynasolutions.com`. The visitor's email is set as `reply_to`, so replying to the notification goes straight back to them. The website does not store submissions.
 
-To connect a real endpoint later, replace the mailto handoff in `src/components/sections/ContactForm.vue` with a `fetch` to a form service (for example a Cloudflare Worker or Formspree), keep the current validation and error messaging, and update the explanatory text and `tests/contact-form.test.js` so the page no longer claims submissions are not stored. Add a privacy notice at that point.
+If delivery fails, the form shows a safe error and a `mailto:` fallback to `site.email`, so the visitor can still send the same details from their mail app. The Resend API key is stored as a Cloudflare secret and is never part of the static build.
+
+### Resend setup
+
+1. Verify `kaynasolutions.com` in Resend using the DNS records it provides in Cloudflare.
+2. Create a send-only Resend API key.
+3. In Cloudflare Pages, open **Settings → Environment variables** and add `RESEND_API_KEY` as a secret for Production (and Preview if you test there).
+4. Optionally set `CONTACT_TO` (default `info@kaynasolutions.com`), `CONTACT_FROM` (default `Kayna Website <website@kaynasolutions.com>`), or `ALLOWED_ORIGINS` (comma-separated extra origins).
+5. Redeploy the Pages project.
+
+Do not put the API key in `.env`, `.dev.vars.example`, or any committed file. For local end-to-end testing, build the site and run `npx wrangler pages dev dist --compatibility-date=2026-11-17` with a gitignored `.dev.vars` containing `RESEND_API_KEY=...`. The Vite dev server alone does not run Pages Functions.
 
 ## Deployment
 
@@ -109,7 +121,7 @@ Cloudflare Pages, static output. Full steps, custom domain notes, and rollback i
 - [ ] Run `npm run check` and confirm the PASS line plus budgets
 - [ ] Check the site on a real phone at 320 px and on a slow connection
 - [ ] Tab through all seven pages and open/close the mobile menu and article panels
-- [ ] Test the contact form's mailto handoff and the copy-to-clipboard button
+- [ ] Submit a real test enquiry through the deployed form, confirm it arrives at `info@kaynasolutions.com`, and test the mailto fallback by temporarily breaking the API key
 - [ ] Confirm `dist/og/og-default.png` renders correctly in a social preview debugger
 - [ ] Have the privacy note and demo-content wording reviewed if required
 - [ ] After launch, submit `https://your-domain/sitemap.xml` in Google Search Console

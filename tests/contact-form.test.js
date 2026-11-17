@@ -6,7 +6,7 @@ import { site } from '../src/data/site'
 
 async function submit(wrapper) {
   await wrapper.get('form').trigger('submit')
-  await nextTick()
+  await flushPromises()
 }
 
 async function fillValid(wrapper) {
@@ -16,8 +16,21 @@ async function fillValid(wrapper) {
   await wrapper.get('#message').setValue('We reconcile stock in three spreadsheets every Friday and it takes two people half a day.')
 }
 
+function jsonResponse(body, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json' },
+  })
+}
+
+function mockFetch(response = jsonResponse({ ok: true })) {
+  const fetchMock = vi.fn().mockResolvedValue(response)
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
+
 afterEach(() => {
-  vi.restoreAllMocks()
+  vi.unstubAllGlobals()
 })
 
 describe('ContactForm', () => {
@@ -27,16 +40,17 @@ describe('ContactForm', () => {
       expect(wrapper.find(`label[for="${id}"]`).exists()).toBe(true)
       expect(wrapper.find(`#${id}`).exists()).toBe(true)
     }
-    expect(wrapper.get('button[type="submit"]').text()).toContain('Prepare email')
+    expect(wrapper.get('button[type="submit"]').text()).toContain('Send message')
   })
 
-  it('tells people plainly what the form does and does not do', () => {
+  it('tells people what happens to their details', () => {
     const wrapper = mount(ContactForm)
-    expect(wrapper.text()).toMatch(/does not send or store/i)
-    expect(wrapper.text()).toMatch(/review it before sending/i)
+    expect(wrapper.text()).toMatch(/use your details only to reply/i)
+    expect(wrapper.text()).not.toMatch(/does not send/i)
   })
 
   it('blocks an empty submission and explains what is missing', async () => {
+    const fetchMock = mockFetch()
     const wrapper = mount(ContactForm)
     await submit(wrapper)
     const errors = wrapper.findAll('[data-error]')
@@ -45,74 +59,127 @@ describe('ContactForm', () => {
     expect(wrapper.text()).toContain('Please enter a valid email address.')
     expect(wrapper.text()).toContain('Please add a little more detail')
     expect(wrapper.get('#name').attributes('aria-invalid')).toBe('true')
-    expect(wrapper.find('[data-mailto]').exists()).toBe(false)
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 
   it('rejects an email address without a domain', async () => {
+    const fetchMock = mockFetch()
     const wrapper = mount(ContactForm)
     await wrapper.get('#name').setValue('Ada Santos')
     await wrapper.get('#email').setValue('ada@example')
     await wrapper.get('#message').setValue('We need help with stock reconciliation every Friday afternoon.')
     await submit(wrapper)
     expect(wrapper.text()).toContain('Please enter a valid email address.')
-    expect(wrapper.find('[data-mailto]').exists()).toBe(false)
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 
-  it('prepares a mailto handoff containing the entered details', async () => {
+  it('posts the enquiry and shows a success state', async () => {
+    const fetchMock = mockFetch()
     const wrapper = mount(ContactForm)
     await fillValid(wrapper)
     await submit(wrapper)
 
-    const link = wrapper.get('[data-mailto]')
-    const href = link.attributes('href')
-    expect(href.startsWith(`mailto:${site.email}`)).toBe(true)
-
-    const decoded = decodeURIComponent(href)
-    expect(decoded).toContain('Ada Santos')
-    expect(decoded).toContain('ada@example.com')
-    expect(decoded).toContain('Santos Trading')
-    expect(decoded).toContain('three spreadsheets every Friday')
-    expect(decoded).toContain('Santos Trading')
-  })
-
-  it('copies the prepared message to the clipboard and confirms it', async () => {
-    const writeText = vi.fn().mockResolvedValue(undefined)
-    Object.defineProperty(navigator, 'clipboard', {
-      value: { writeText },
-      configurable: true,
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    const [url, init] = fetchMock.mock.calls[0]
+    expect(url).toBe('/api/contact')
+    expect(init.method).toBe('POST')
+    expect(JSON.parse(init.body)).toMatchObject({
+      name: 'Ada Santos',
+      email: 'ada@example.com',
+      company: 'Santos Trading',
+      website: '',
     })
-
-    const wrapper = mount(ContactForm)
-    await fillValid(wrapper)
-    await submit(wrapper)
-    await wrapper.get('[data-copy]').trigger('click')
-    await flushPromises()
-
-    expect(writeText).toHaveBeenCalledTimes(1)
-    expect(writeText.mock.calls[0][0]).toContain('three spreadsheets every Friday')
-    expect(wrapper.get('[role="status"]').text()).toContain('Copied')
+    expect(wrapper.text()).toContain('Message sent')
+    expect(wrapper.text()).toContain('ada@example.com')
+    expect(wrapper.find('form').exists()).toBe(false)
   })
 
-  it('falls back to manual copying when the clipboard is unavailable', async () => {
-    Object.defineProperty(navigator, 'clipboard', { value: undefined, configurable: true })
+  it('disables the button while the enquiry is sending', async () => {
+    let resolveFetch
+    const pending = new Promise((resolve) => {
+      resolveFetch = resolve
+    })
+    const fetchMock = vi.fn().mockReturnValue(pending)
+    vi.stubGlobal('fetch', fetchMock)
 
     const wrapper = mount(ContactForm)
     await fillValid(wrapper)
-    await submit(wrapper)
-    await wrapper.get('[data-copy]').trigger('click')
-    await flushPromises()
+    await wrapper.get('form').trigger('submit')
+    await nextTick()
 
-    expect(wrapper.get('[role="status"]').text()).toMatch(/select the text/i)
-    expect(wrapper.get('#prepared-message').attributes('readonly')).toBeDefined()
-    expect(wrapper.get('#prepared-message').element.value).toContain('three spreadsheets')
+    const button = wrapper.get('button[type="submit"]')
+    expect(button.text()).toContain('Sending')
+    expect(button.attributes('disabled')).toBeDefined()
+
+    resolveFetch(jsonResponse({ ok: true }))
+    await flushPromises()
   })
 
-  it('clears the prepared draft when the form is edited again', async () => {
+  it('shows an error and a mailto fallback when the endpoint rejects the message', async () => {
+    mockFetch(
+      jsonResponse({ ok: false, error: 'We could not send your message right now.' }, 502),
+    )
     const wrapper = mount(ContactForm)
     await fillValid(wrapper)
     await submit(wrapper)
+
+    expect(wrapper.get('[role="alert"]').text()).toContain(
+      'We could not send your message right now.',
+    )
+    const link = wrapper.get('[data-mailto]')
+    expect(link.attributes('href').startsWith(`mailto:${site.email}`)).toBe(true)
+    expect(decodeURIComponent(link.attributes('href'))).toContain('three spreadsheets')
+  })
+
+  it('shows a mailto fallback when the network request fails', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('Failed to fetch')))
+    const wrapper = mount(ContactForm)
+    await fillValid(wrapper)
+    await submit(wrapper)
+
+    expect(wrapper.get('[role="alert"]').text()).toMatch(/could not reach the form service/i)
     expect(wrapper.find('[data-mailto]').exists()).toBe(true)
+  })
+
+  it('applies field errors returned by the endpoint', async () => {
+    mockFetch(
+      jsonResponse(
+        {
+          ok: false,
+          error: 'Please check the highlighted fields.',
+          fields: { email: 'That email address looks invalid.' },
+        },
+        400,
+      ),
+    )
+    const wrapper = mount(ContactForm)
+    await fillValid(wrapper)
+    await submit(wrapper)
+
+    expect(wrapper.text()).toContain('That email address looks invalid.')
+    expect(wrapper.get('#email').attributes('aria-invalid')).toBe('true')
+  })
+
+  it('clears an error when the visitor edits the form again', async () => {
+    mockFetch(jsonResponse({ ok: false, error: 'We could not send your message right now.' }, 502))
+    const wrapper = mount(ContactForm)
+    await fillValid(wrapper)
+    await submit(wrapper)
+
+    expect(wrapper.find('[role="alert"]').exists()).toBe(true)
     await wrapper.get('#name').setValue('Ada S.')
-    expect(wrapper.find('[data-mailto]').exists()).toBe(false)
+    expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+  })
+
+  it('lets the visitor send another message after success', async () => {
+    mockFetch()
+    const wrapper = mount(ContactForm)
+    await fillValid(wrapper)
+    await submit(wrapper)
+
+    await wrapper.get('[data-send-another]').trigger('click')
+    expect(wrapper.find('form').exists()).toBe(true)
+    expect(wrapper.get('#name').element.value).toBe('')
+    expect(wrapper.get('button[type="submit"]').text()).toContain('Send message')
   })
 })

@@ -1,0 +1,7 @@
+# Copy to .dev.vars for local Wrangler testing. Never commit .dev.vars.
+RESEND_API_KEY=replace-with-a-send-only-resend-key
+
+# Optional overrides
+# CONTACT_TO=info@kaynasolutions.com
+# CONTACT_FROM=Kayna Website <website@kaynasolutions.com>
+# ALLOWED_ORIGINS=http://localhost:8788

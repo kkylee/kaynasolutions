@@ -37,11 +37,13 @@ Rename the site from **Sol Digital** to **Kayna Digital Solutions** everywhere i
 - `build/seo-plugin.js` JSON-LD, sitemap, and no-JS fallback use the new name, URL, email, and `sameAs` profiles automatically.
 - `public/robots.txt`, `public/favicon-32.png`, `public/favicon-192.png`, `public/apple-touch-icon.png`, `public/brand/kayna-icon.png`, and `public/og/og-default.*` regenerated.
 - `package.json`, package-lock, plugin names, image cache directory, README, content brief, deployment notes, and brand README.
-- Tests updated for the new site name, URL, contact details, social profiles, wordmark, and favicons.
+- `functions/api/contact.js`, `ContactForm.vue`, and the deployment notes for Resend-backed contact delivery.
+- Tests updated for the new site name, URL, contact details, social profiles, wordmark, favicons, and form delivery.
 
 ## Out of scope
 
-- No change to the page structure, services, solutions, articles, portfolio demonstrations, photography, or contact form behaviour.
+- No change to the page structure, services, solutions, articles, portfolio demonstrations, or photography.
+- No database, CRM, or submission archive. Contact enquiries are emailed through Resend and are not stored on the website.
 - No claim that `kaynasolutions.com` is owned or live.
 
 ## Verification

@@ -46,4 +46,4 @@ Projects and articles are sample content. Each project card carries a "Demonstra
 
 ## Contact facts
 
-Email, telephone, and mobile number are real details stored in `src/data/site.js`, alongside the supplied Facebook and LinkedIn profile URLs. The form stores nothing and sends nothing by itself.
+Email, telephone, and mobile number are real details stored in `src/data/site.js`, alongside the supplied Facebook and LinkedIn profile URLs. The contact form sends enquiries to `info@kaynasolutions.com` through Resend and does not store them on the website.
