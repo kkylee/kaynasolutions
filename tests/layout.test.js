@@ -109,6 +109,13 @@ describe('SiteHeader', () => {
     expect(trigger.classes().join(' ')).toContain('min-h-11')
     expect(trigger.classes().join(' ')).toContain('min-w-11')
   })
+
+  it('offers a theme toggle that is big enough to tap', () => {
+    const wrapper = mount(SiteHeader)
+    const toggle = wrapper.get('[data-theme-toggle]')
+    expect(toggle.classes().join(' ')).toContain('min-h-11')
+    expect(toggle.classes().join(' ')).toContain('min-w-11')
+  })
 })
 
 describe('SiteFooter', () => {

@@ -1,4 +1,7 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
+import ThemeToggle from '../src/components/layout/ThemeToggle.vue'
 import {
   THEME_COLORS,
   THEME_STORAGE_KEY,
@@ -65,5 +68,95 @@ describe('themeInitScript', () => {
     expect(script).toContain(THEME_COLORS.light)
     expect(script).toContain(THEME_COLORS.dark)
     expect(script).toContain('document.documentElement')
+  })
+})
+
+function mockThemeMedia({ systemDark = false } = {}) {
+  const listeners = new Set()
+  const media = {
+    matches: systemDark,
+    media: '(prefers-color-scheme: dark)',
+    addEventListener: vi.fn((type, listener) => {
+      if (type === 'change') listeners.add(listener)
+    }),
+    removeEventListener: vi.fn((type, listener) => {
+      if (type === 'change') listeners.delete(listener)
+    }),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }
+
+  window.matchMedia = vi.fn(() => media)
+
+  return {
+    media,
+    setSystemDark(value) {
+      media.matches = value
+      for (const listener of listeners) listener({ matches: value })
+    },
+    listeners,
+  }
+}
+
+describe('ThemeToggle', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    document.documentElement.className = ''
+    delete document.documentElement.dataset.theme
+    document.documentElement.style.colorScheme = ''
+    document.head.innerHTML = '<meta name="theme-color" content="#FFFFFF" />'
+  })
+
+  it('switches to dark, persists the choice, and exposes the next action', async () => {
+    mockThemeMedia()
+    const wrapper = mount(ThemeToggle)
+
+    const toggle = wrapper.get('[data-theme-toggle]')
+    expect(toggle.attributes('aria-label')).toBe('Switch to dark theme')
+
+    await toggle.trigger('click')
+    await nextTick()
+
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
+    expect(document.documentElement.dataset.theme).toBe('dark')
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark')
+    expect(toggle.attributes('aria-label')).toBe('Switch to light theme')
+
+    wrapper.unmount()
+  })
+
+  it('follows the system preference when no explicit choice exists', async () => {
+    const media = mockThemeMedia({ systemDark: true })
+    document.documentElement.classList.add('dark')
+    document.documentElement.dataset.theme = 'dark'
+
+    const wrapper = mount(ThemeToggle)
+    await nextTick()
+    const toggle = wrapper.get('[data-theme-toggle]')
+    expect(toggle.attributes('aria-label')).toBe('Switch to light theme')
+
+    media.setSystemDark(false)
+    await nextTick()
+
+    expect(document.documentElement.classList.contains('dark')).toBe(false)
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBeNull()
+    expect(toggle.attributes('aria-label')).toBe('Switch to dark theme')
+
+    wrapper.unmount()
+  })
+
+  it('keeps an explicit choice when the system preference changes', async () => {
+    const media = mockThemeMedia()
+    const wrapper = mount(ThemeToggle)
+
+    await wrapper.get('[data-theme-toggle]').trigger('click')
+    media.setSystemDark(false)
+    await nextTick()
+
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark')
+
+    wrapper.unmount()
   })
 })

@@ -5,6 +5,7 @@ import { nav } from '../../data/site'
 import { currentPath } from '../../lib/path'
 import Wordmark from './Wordmark.vue'
 import MobileNav from './MobileNav.vue'
+import ThemeToggle from './ThemeToggle.vue'
 import BaseButton from '../common/BaseButton.vue'
 
 const active = ref('/')
@@ -48,6 +49,7 @@ async function close() {
       </nav>
 
       <div class="flex items-center gap-2">
+        <ThemeToggle />
         <div class="hidden sm:block">
           <BaseButton href="/contact/" label="Let's talk" />
         </div>
