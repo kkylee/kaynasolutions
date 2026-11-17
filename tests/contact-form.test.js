@@ -23,7 +23,7 @@ function jsonResponse(body, status = 200) {
   })
 }
 
-function mockFetch(response = jsonResponse({ ok: true })) {
+function mockFetch(response = jsonResponse({ id: 'email_123' })) {
   const fetchMock = vi.fn().mockResolvedValue(response)
   vi.stubGlobal('fetch', fetchMock)
   return fetchMock
@@ -81,14 +81,19 @@ describe('ContactForm', () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(1)
     const [url, init] = fetchMock.mock.calls[0]
-    expect(url).toBe('/api/contact')
+    expect(url).toBe('/api/send')
     expect(init.method).toBe('POST')
-    expect(JSON.parse(init.body)).toMatchObject({
-      name: 'Ada Santos',
-      email: 'ada@example.com',
-      company: 'Santos Trading',
-      website: '',
+    const payload = JSON.parse(init.body)
+    expect(payload).toMatchObject({
+      to: site.email,
+      reply_to: 'ada@example.com',
+      subject: 'Website enquiry — Ada Santos (Santos Trading)',
     })
+    expect(payload.text).toContain('three spreadsheets every Friday')
+    expect(payload.text).toContain('Santos Trading')
+    expect(payload.html).toContain('Ada Santos')
+    expect(payload.html).toContain('Santos Trading')
+    expect(payload.html).not.toContain('undefined')
     expect(wrapper.text()).toContain('Message sent')
     expect(wrapper.text()).toContain('ada@example.com')
     expect(wrapper.find('form').exists()).toBe(false)
@@ -111,14 +116,12 @@ describe('ContactForm', () => {
     expect(button.text()).toContain('Sending')
     expect(button.attributes('disabled')).toBeDefined()
 
-    resolveFetch(jsonResponse({ ok: true }))
+    resolveFetch(jsonResponse({ id: 'email_123' }))
     await flushPromises()
   })
 
   it('shows an error and a mailto fallback when the endpoint rejects the message', async () => {
-    mockFetch(
-      jsonResponse({ ok: false, error: 'We could not send your message right now.' }, 502),
-    )
+    mockFetch(jsonResponse({ message: 'Invalid `to` field.' }, 502))
     const wrapper = mount(ContactForm)
     await fillValid(wrapper)
     await submit(wrapper)
@@ -141,27 +144,37 @@ describe('ContactForm', () => {
     expect(wrapper.find('[data-mailto]').exists()).toBe(true)
   })
 
-  it('applies field errors returned by the endpoint', async () => {
+  it('does not leak technical endpoint errors to the visitor', async () => {
     mockFetch(
       jsonResponse(
         {
-          ok: false,
-          error: 'Please check the highlighted fields.',
-          fields: { email: 'That email address looks invalid.' },
+          message: 'Invalid `to` field. The email address needs to follow the email@example.com format.',
         },
-        400,
+        422,
       ),
     )
     const wrapper = mount(ContactForm)
     await fillValid(wrapper)
     await submit(wrapper)
 
-    expect(wrapper.text()).toContain('That email address looks invalid.')
-    expect(wrapper.get('#email').attributes('aria-invalid')).toBe('true')
+    expect(wrapper.text()).not.toContain('Invalid `to` field')
+    expect(wrapper.text()).toContain('We could not send your message right now.')
+    expect(wrapper.find('[data-mailto]').exists()).toBe(true)
+  })
+
+  it('quietly accepts a honeypot submission without posting it', async () => {
+    const fetchMock = mockFetch()
+    const wrapper = mount(ContactForm)
+    await fillValid(wrapper)
+    await wrapper.get('#website').setValue('https://spam.example')
+    await submit(wrapper)
+
+    expect(fetchMock).not.toHaveBeenCalled()
+    expect(wrapper.text()).toContain('Message sent')
   })
 
   it('clears an error when the visitor edits the form again', async () => {
-    mockFetch(jsonResponse({ ok: false, error: 'We could not send your message right now.' }, 502))
+    mockFetch(jsonResponse({ message: 'Invalid `to` field.' }, 502))
     const wrapper = mount(ContactForm)
     await fillValid(wrapper)
     await submit(wrapper)

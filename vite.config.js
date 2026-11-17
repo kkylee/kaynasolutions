@@ -6,6 +6,15 @@ import { stableFontDisplay } from './build/stable-font-display.js'
 
 export default defineConfig({
   plugins: [stableFontDisplay(), vue(), tailwindcss(), seo()],
+  server: {
+    proxy: {
+      '/api/send': {
+        target: 'https://kaynasolutions.com',
+        changeOrigin: true,
+        headers: { Origin: 'https://kaynasolutions.com' },
+      },
+    },
+  },
   build: {
     rollupOptions: {
       input: {

@@ -4,7 +4,7 @@ import BaseButton from '../common/BaseButton.vue'
 import { services } from '../../data/services'
 import { site } from '../../data/site'
 
-const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT || '/api/contact'
+const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT || '/api/send'
 
 const form = reactive({
   name: '',
@@ -58,9 +58,62 @@ function buildBody() {
   return `${details.join('\n')}\n\n${form.message.trim()}`
 }
 
+function subjectLine() {
+  const name = form.name.trim().replace(/[\r\n]+/g, ' ')
+  const company = form.company.trim().replace(/[\r\n]+/g, ' ')
+  return `Website enquiry — ${name}${company ? ` (${company})` : ''}`.slice(0, 180)
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (character) => {
+    const entities = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }
+    return entities[character]
+  })
+}
+
+function buildHtml() {
+  const rows = [
+    ['Name', form.name.trim()],
+    ['Email', form.email.trim()],
+    ['Business', form.company.trim()],
+    ['Phone', form.phone.trim()],
+    ['Interested in', form.service],
+  ].filter(([, value]) => value)
+
+  const htmlRows = rows
+    .map(
+      ([label, value]) =>
+        `<tr><th align="left" style="padding:6px 16px 6px 0;vertical-align:top;color:#475569;font-weight:600">${escapeHtml(
+          label,
+        )}</th><td style="padding:6px 0;vertical-align:top;color:#101D35">${escapeHtml(
+          value,
+        )}</td></tr>`,
+    )
+    .join('')
+
+  return `<!doctype html>
+<html>
+  <body style="margin:0;padding:24px;background:#F8FAFC;font-family:Inter,Arial,sans-serif;color:#475569">
+    <div style="max-width:640px;margin:0 auto;padding:28px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px">
+      <h1 style="margin:0 0 18px;font-family:Manrope,Arial,sans-serif;font-size:22px;line-height:1.25;color:#101D35">New website enquiry</h1>
+      <table style="border-collapse:collapse;font-size:14px;line-height:1.5">${htmlRows}</table>
+      <h2 style="margin:24px 0 8px;font-family:Manrope,Arial,sans-serif;font-size:16px;color:#101D35">Message</h2>
+      <p style="margin:0;font-size:14px;line-height:1.65;white-space:pre-wrap">${escapeHtml(
+        form.message.trim(),
+      )}</p>
+    </div>
+  </body>
+</html>`
+}
+
 function mailtoHref() {
-  const subject = `Website enquiry${form.company.trim() ? ` — ${form.company.trim()}` : ''}`
-  return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildBody())}`
+  return `mailto:${site.email}?subject=${encodeURIComponent(subjectLine())}&body=${encodeURIComponent(buildBody())}`
 }
 
 function resetFields() {
@@ -94,6 +147,12 @@ async function onSubmit() {
     return
   }
 
+  if (form.website.trim()) {
+    sentTo.value = form.email.trim()
+    status.value = 'success'
+    return
+  }
+
   status.value = 'submitting'
 
   try {
@@ -101,30 +160,16 @@ async function onSubmit() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: form.name.trim(),
-        email: form.email.trim(),
-        company: form.company.trim(),
-        phone: form.phone.trim(),
-        service: form.service,
-        message: form.message.trim(),
-        website: form.website,
+        to: site.email,
+        subject: subjectLine(),
+        reply_to: form.email.trim(),
+        text: buildBody(),
+        html: buildHtml(),
       }),
     })
 
-    let data = null
-    try {
-      data = await response.json()
-    } catch {
-      data = null
-    }
-
-    if (!response.ok || !data?.ok) {
-      if (data?.fields && typeof data.fields === 'object') {
-        for (const [key, message] of Object.entries(data.fields)) {
-          if (typeof message === 'string') errors[key] = message
-        }
-      }
-      throw new Error(data?.error || 'We could not send your message right now.')
+    if (!response.ok) {
+      throw new Error('We could not send your message right now. Please email us directly.')
     }
 
     sentTo.value = form.email.trim()
@@ -135,7 +180,7 @@ async function onSubmit() {
       error instanceof TypeError
         ? 'We could not reach the form service. Please email us directly.'
         : error.message
-    fallback.value = { href: mailtoHref(), body: buildBody() }
+    fallback.value = { href: mailtoHref() }
     nextTick(() => formEl.value?.querySelector('[role="alert"]')?.focus())
   }
 }
