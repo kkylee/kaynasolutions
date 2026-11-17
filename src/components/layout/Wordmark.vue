@@ -26,7 +26,7 @@ const iconSrc = '/brand/kayna-icon.png'
         class="mt-1 font-body text-xs font-medium leading-none"
         :class="tone === 'light' ? 'text-slate-200' : 'text-body'"
       >
-        Digital Solutions
+        IT Solutions
       </span>
     </span>
   </span>

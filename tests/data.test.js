@@ -47,14 +47,14 @@ describe('site', () => {
   })
 
   it('uses the Kayna brand names', () => {
-    expect(site.name).toBe('Kayna Digital Solutions')
+    expect(site.name).toBe('Kayna IT Solutions')
     expect(site.shortName).toBe('Kayna')
-    expect(site.descriptor).toBe('Digital Solutions')
+    expect(site.descriptor).toBe('IT Solutions')
   })
 
   it('puts the Kayna name in every page title within the build limit', () => {
     for (const page of pages) {
-      expect(page.title).toContain('Kayna Digital Solutions')
+      expect(page.title).toContain('Kayna IT Solutions')
       expect(page.title.length).toBeLessThanOrEqual(65)
     }
   })

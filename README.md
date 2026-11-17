@@ -1,6 +1,6 @@
-# Kayna Digital Solutions
+# Kayna IT Solutions
 
-A seven-page corporate website for Kayna Digital Solutions, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no database, CMS, or admin area. Contact-form delivery uses the site's `/api/send` endpoint.
+A seven-page corporate website for Kayna IT Solutions, built with Vue 3, Vite, and Tailwind CSS v4. Every page is a real HTML entry point; Vue provides the interface, and all content lives in local JavaScript data files. There is no database, CMS, or admin area. Contact-form delivery uses the site's `/api/send` endpoint.
 
 **Positioning:** Big-business capabilities, practical solutions for growing businesses.
 **Tagline:** Better business starts with better systems.

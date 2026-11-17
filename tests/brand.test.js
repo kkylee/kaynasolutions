@@ -46,7 +46,7 @@ describe('Kayna brand assets', () => {
     expect(logo).toContain('font-family="Manrope"')
     expect(logo).toContain('font-family="Inter"')
     expect(logo).toContain('Kayna')
-    expect(logo).toContain('Digital Solutions')
+    expect(logo).toContain('IT Solutions')
     expect(logo).not.toContain('>SOLUTIONS<')
     expect(read('brand/kayna-logo-inverse.svg')).toContain('data:image/png;base64,')
   })
@@ -54,9 +54,9 @@ describe('Kayna brand assets', () => {
   it('uses the supplied icon and the full brand name in the Open Graph image', () => {
     const og = read('public/og/og-default.svg')
     expect(og).toContain('data:image/png;base64,')
-    expect(og).toContain('<title>Kayna Digital Solutions')
+    expect(og).toContain('<title>Kayna IT Solutions')
     expect(og).toContain('Better business starts with better systems.')
-    expect(og).toContain('Digital Solutions')
+    expect(og).toContain('IT Solutions')
     expect(exists('public/og/og-default.png')).toBe(true)
   })
 

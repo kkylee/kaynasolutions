@@ -1,6 +1,6 @@
 export const story = [
   'Most growing businesses do not stall because of a lack of ambition. They stall because the systems that worked at ten people stop working at forty.',
-  'Kayna Digital Solutions exists to close that gap. We bring the systems larger companies take for granted — clean records, approvals that route themselves, reports that are ready when someone asks — within reach of businesses still running on spreadsheets and group chats.',
+  'Kayna IT Solutions exists to close that gap. We bring the systems larger companies take for granted — clean records, approvals that route themselves, reports that are ready when someone asks — within reach of businesses still running on spreadsheets and group chats.',
   'We are not a software reseller, and we do not arrive with a template. We start with how your team actually works, then build the smallest system that makes the week easier.',
 ]
 

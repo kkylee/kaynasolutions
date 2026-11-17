@@ -1,10 +1,10 @@
-# Kayna Digital Solutions brand assets
+# Kayna IT Solutions brand assets
 
 The supplied profile icon is the source of truth. It shows the gradient K/Y mark with the cyan dot, centred on the deep navy field. The artwork is used as supplied — it is not redrawn.
 
 The file has generous navy margins around the mark. `scripts/make-brand.mjs` crops a centred 1024 × 1024 window so the mark stays optically correct at every size, from the 32 px favicon to the 120 px Open Graph lockup.
 
-The header and footer pair the icon with live typography: **Kayna** in Manrope 700 and **Digital Solutions** in Inter 500. This keeps the wordmark sharp at every breakpoint and consistent with the rest of the site.
+The header and footer pair the icon with live typography: **Kayna** in Manrope 700 and **IT Solutions** in Inter 500. This keeps the wordmark sharp at every breakpoint and consistent with the rest of the site.
 
 ## Files
 
@@ -38,7 +38,7 @@ The icon’s own purple-to-blue gradient and cyan dot are part of the supplied m
 ## Typography
 
 - **Manrope Variable** — “Kayna”, headings, and display text.
-- **Inter Variable** — “Digital Solutions”, body copy, and interface text.
+- **Inter Variable** — “IT Solutions”, body copy, and interface text.
 
 Both are loaded from the site’s self-hosted font packages. The logo SVGs embed the same two fonts so they render correctly in tools without the fonts installed.
 

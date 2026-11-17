@@ -40,7 +40,7 @@ describe('Wordmark', () => {
     expect(image.attributes('width')).toBe('40')
     expect(image.attributes('height')).toBe('40')
     expect(wrapper.text()).toContain('Kayna')
-    expect(wrapper.text()).toContain('Digital Solutions')
+    expect(wrapper.text()).toContain('IT Solutions')
     expect(wrapper.find('.font-display').exists()).toBe(true)
     expect(wrapper.find('.font-body').exists()).toBe(true)
     expect(wrapper.find('.whitespace-nowrap').exists()).toBe(true)

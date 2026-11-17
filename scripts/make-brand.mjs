@@ -38,18 +38,18 @@ const iconData = iconForSvg.toString('base64')
 const logoSvg = (inverse = false) => {
   const primary = inverse ? '#FFFFFF' : '#101D35'
   const secondary = inverse ? '#CBD5E1' : '#475569'
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="340" height="120" viewBox="0 0 340 120" role="img" aria-label="Kayna Digital Solutions">
-  <title>Kayna Digital Solutions</title>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="340" height="120" viewBox="0 0 340 120" role="img" aria-label="Kayna IT Solutions">
+  <title>Kayna IT Solutions</title>
   ${fontStyle}
   <defs><clipPath id="logo-icon"><rect x="0" y="20" width="80" height="80" rx="14" /></clipPath></defs>
   <image x="0" y="20" width="80" height="80" clip-path="url(#logo-icon)" href="data:image/png;base64,${iconData}" />
   <text x="100" y="66" font-family="Manrope" font-size="48" font-weight="700" fill="${primary}">Kayna</text>
-  <text x="102" y="94" font-family="Inter" font-size="17" font-weight="500" fill="${secondary}">Digital Solutions</text>
+  <text x="102" y="94" font-family="Inter" font-size="17" font-weight="500" fill="${secondary}">IT Solutions</text>
 </svg>`
 }
 
-const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Kayna Digital Solutions — Better business starts with better systems.">
-  <title>Kayna Digital Solutions — Better business starts with better systems.</title>
+const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Kayna IT Solutions — Better business starts with better systems.">
+  <title>Kayna IT Solutions — Better business starts with better systems.</title>
   ${fontStyle}
   <rect width="1200" height="630" fill="#101D35" />
   <circle cx="1090" cy="118" r="230" fill="#14B8A6" opacity="0.07" />
@@ -58,7 +58,7 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
   <image x="80" y="64" width="120" height="120" clip-path="url(#og-icon)" href="data:image/png;base64,${iconData}" />
   <rect x="80.5" y="64.5" width="119" height="119" rx="25.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.14" />
   <text x="224" y="128" font-family="Manrope" font-size="52" font-weight="700" fill="#FFFFFF">Kayna</text>
-  <text x="226" y="164" font-family="Inter" font-size="20" font-weight="500" fill="#CBD5E1">Digital Solutions</text>
+  <text x="226" y="164" font-family="Inter" font-size="20" font-weight="500" fill="#CBD5E1">IT Solutions</text>
   <rect x="80" y="244" width="72" height="6" rx="3" fill="#14B8A6" />
   <text x="80" y="332" font-family="Manrope" font-size="62" font-weight="700" fill="#FFFFFF">Better business starts</text>
   <text x="80" y="404" font-family="Manrope" font-size="62" font-weight="700" fill="#FFFFFF">with better systems.</text>
