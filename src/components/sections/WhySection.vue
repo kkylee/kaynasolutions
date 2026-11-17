@@ -7,7 +7,7 @@ import { img } from '../../lib/images'
 </script>
 
 <template>
-  <section id="why" class="border-t border-navy/10 bg-paper py-20 lg:py-28" data-reveal>
+  <section id="why" class="border-t border-line bg-subtle py-20 lg:py-28" data-reveal>
     <div class="container-page grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
       <PhotoFigure :image="img('why-team')" ratio="4:3" sizes="(min-width: 1024px) 560px, 100vw" />
 
@@ -23,10 +23,10 @@ import { img } from '../../lib/images'
             :key="reason.title"
             class="grid grid-cols-[2rem_1fr] gap-3"
           >
-            <span class="pt-1 text-xs font-semibold tabular-nums text-blue">0{{ index + 1 }}</span>
+            <span class="pt-1 text-xs font-semibold tabular-nums text-link">0{{ index + 1 }}</span>
             <div>
               <h3 class="text-base">{{ reason.title }}</h3>
-              <p class="mt-1 text-sm leading-relaxed text-slate-ink">{{ reason.body }}</p>
+              <p class="mt-1 text-sm leading-relaxed text-body">{{ reason.body }}</p>
             </div>
           </li>
         </ul>

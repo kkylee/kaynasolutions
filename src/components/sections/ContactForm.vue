@@ -206,12 +206,12 @@ watch(
     <div
       v-if="status === 'success'"
       data-success
-      class="rounded-2xl border border-teal/40 bg-teal/5 p-6 sm:p-8"
+      class="rounded-2xl border border-signal/40 bg-signal/5 p-6 sm:p-8"
     >
       <p class="eyebrow">Message sent</p>
       <h3 class="mt-2 text-2xl">Thanks — your message is on its way.</h3>
-      <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-ink">
-        We’ll reply to <span class="font-medium text-navy">{{ sentTo }}</span> as soon as we can.
+      <p class="mt-3 max-w-xl text-sm leading-relaxed text-body">
+        We’ll reply to <span class="font-medium text-ink">{{ sentTo }}</span> as soon as we can.
         If you need to add anything, reply to the email you receive from us.
       </p>
       <BaseButton
@@ -227,7 +227,7 @@ watch(
     <form
       v-else
       ref="formEl"
-      class="rounded-2xl border border-navy/10 bg-white p-6 sm:p-8"
+      class="rounded-2xl border border-line bg-surface p-6 sm:p-8"
       novalidate
       :aria-busy="isSubmitting() ? 'true' : undefined"
       @submit.prevent="onSubmit"
@@ -235,7 +235,7 @@ watch(
       <fieldset :disabled="isSubmitting()" class="min-w-0 border-0 p-0">
         <div class="grid gap-5 sm:grid-cols-2">
           <div>
-            <label for="name" class="field-label">Name <span class="text-blue">*</span></label>
+            <label for="name" class="field-label">Name <span class="text-link">*</span></label>
             <input
               id="name"
               v-model="form.name"
@@ -251,7 +251,7 @@ watch(
           </div>
 
           <div>
-            <label for="email" class="field-label">Email <span class="text-blue">*</span></label>
+            <label for="email" class="field-label">Email <span class="text-link">*</span></label>
             <input
               id="email"
               v-model="form.email"
@@ -317,7 +317,7 @@ watch(
 
         <div class="mt-5">
           <label for="message" class="field-label">
-            What is happening? <span class="text-blue">*</span>
+            What is happening? <span class="text-link">*</span>
           </label>
           <textarea
             id="message"
@@ -329,7 +329,7 @@ watch(
             :aria-invalid="errors.message ? 'true' : undefined"
             :aria-describedby="errors.message ? 'message-error' : 'message-help'"
           />
-          <p v-if="!errors.message" id="message-help" class="mt-1.5 text-xs leading-relaxed text-slate-ink">
+          <p v-if="!errors.message" id="message-help" class="mt-1.5 text-xs leading-relaxed text-body">
             No need to prepare a brief. A few plain sentences are enough.
           </p>
           <p v-if="errors.message" id="message-error" data-error class="field-error">
@@ -349,14 +349,19 @@ watch(
           />
         </div>
 
-        <div v-if="errorMessage" role="alert" tabindex="-1" class="mt-5 rounded-xl border border-red-200 bg-red-50 p-4">
-          <p class="text-sm font-semibold text-red-900">Message not sent.</p>
-          <p class="mt-1 text-sm leading-relaxed text-red-800">{{ errorMessage }}</p>
+        <div
+          v-if="errorMessage"
+          role="alert"
+          tabindex="-1"
+          class="mt-5 rounded-xl border border-danger-line bg-danger-surface p-4"
+        >
+          <p class="text-sm font-semibold text-danger">Message not sent.</p>
+          <p class="mt-1 text-sm leading-relaxed text-danger">{{ errorMessage }}</p>
           <a
             v-if="fallback"
             data-mailto
             :href="fallback.href"
-            class="mt-3 inline-flex items-center text-sm font-medium text-navy underline decoration-navy/40 underline-offset-4 hover:decoration-navy"
+            class="mt-3 inline-flex items-center text-sm font-medium text-ink underline decoration-link/40 underline-offset-4 hover:decoration-link"
           >
             Email us directly
           </a>
@@ -370,7 +375,7 @@ watch(
             :disabled="isSubmitting()"
             :aria-busy="isSubmitting() ? 'true' : undefined"
           />
-          <p class="max-w-xs text-xs leading-relaxed text-slate-ink">
+          <p class="max-w-xs text-xs leading-relaxed text-body">
             We use your details only to reply to this enquiry. Nothing is stored on this website.
           </p>
         </div>

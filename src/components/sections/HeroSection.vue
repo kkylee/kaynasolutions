@@ -6,21 +6,21 @@ import { img } from '../../lib/images'
 </script>
 
 <template>
-  <section id="hero" class="relative overflow-hidden bg-white pt-28 sm:pt-32 lg:pt-36">
+  <section id="hero" class="relative overflow-hidden bg-canvas pt-28 sm:pt-32 lg:pt-36">
     <div
       class="container-page grid items-center gap-10 pb-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:pb-24"
     >
       <div>
         <p
-          class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-navy/70"
+          class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink/70"
         >
-          <span class="h-1.5 w-1.5 rounded-full bg-teal" aria-hidden="true" />
+          <span class="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden="true" />
           Business systems for growing companies
         </p>
         <h1 class="mt-5 text-[2.6rem] leading-[1.02] sm:text-5xl lg:text-6xl">
           Better business starts with better systems.
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-ink">
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-body">
           Big-business capabilities, practical solutions for growing businesses. We replace manual
           workarounds with software, automation, and systems that talk to each other.
         </p>
@@ -34,10 +34,10 @@ import { img } from '../../lib/images'
           />
         </div>
         <ul
-          class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-navy/10 pt-5 text-sm text-slate-ink"
+          class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-5 text-sm text-body"
         >
           <li v-for="audience in site.audiences" :key="audience" class="flex items-center gap-2">
-            <span class="h-1 w-1 rounded-full bg-navy/30" aria-hidden="true" />
+            <span class="h-1 w-1 rounded-full bg-ink/30" aria-hidden="true" />
             {{ audience }}
           </li>
         </ul>

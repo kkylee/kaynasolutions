@@ -4,10 +4,10 @@ import { process } from '../../data/home'
 </script>
 
 <template>
-  <section id="process" class="bg-navy py-20 text-white lg:py-28" data-reveal>
+  <section id="process" class="bg-deep py-20 text-white lg:py-28" data-reveal>
     <div class="container-page">
       <div class="max-w-2xl">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-teal">How we work</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-signal-bright">How we work</p>
         <h2 class="mt-3 text-3xl text-white sm:text-4xl">
           Four steps, and you know where things stand.
         </h2>

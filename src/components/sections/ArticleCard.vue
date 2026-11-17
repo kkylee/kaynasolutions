@@ -11,7 +11,7 @@ defineProps({
 <template>
   <article
     :id="article.slug"
-    class="scroll-mt-24 overflow-hidden rounded-2xl border border-navy/10 bg-white"
+    class="scroll-mt-24 overflow-hidden rounded-2xl border border-line bg-surface"
   >
     <div class="grid sm:grid-cols-[15rem_1fr] lg:grid-cols-[18rem_1fr]">
       <PhotoFigure
@@ -24,19 +24,19 @@ defineProps({
 
       <div class="min-w-0 p-5 sm:p-6">
         <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-          <span class="font-semibold uppercase tracking-[0.14em] text-blue">
+          <span class="font-semibold uppercase tracking-[0.14em] text-link">
             {{ article.category }}
           </span>
-          <span class="text-navy/30" aria-hidden="true">•</span>
-          <span class="text-slate-ink">{{ article.readTime }}</span>
+          <span class="text-ink/30" aria-hidden="true">•</span>
+          <span class="text-body">{{ article.readTime }}</span>
         </div>
 
         <h2 class="mt-2 text-xl leading-snug sm:text-2xl">{{ article.title }}</h2>
-        <p class="mt-2 text-sm leading-relaxed text-slate-ink">{{ article.excerpt }}</p>
+        <p class="mt-2 text-sm leading-relaxed text-body">{{ article.excerpt }}</p>
 
         <details class="group mt-4">
           <summary
-            class="inline-flex min-h-6 cursor-pointer list-none items-center gap-2 rounded-md py-1 text-sm font-semibold text-navy hover:text-blue [&::-webkit-details-marker]:hidden"
+            class="inline-flex min-h-6 cursor-pointer list-none items-center gap-2 rounded-md py-1 text-sm font-semibold text-ink hover:text-link [&::-webkit-details-marker]:hidden"
           >
             <span>Read the article</span>
             <span class="sr-only">: {{ article.title }}</span>
@@ -45,11 +45,11 @@ defineProps({
               aria-hidden="true"
             />
           </summary>
-          <div class="mt-4 space-y-3 border-t border-navy/10 pt-4">
+          <div class="mt-4 space-y-3 border-t border-line pt-4">
             <p
               v-for="paragraph in article.body"
               :key="paragraph"
-              class="text-sm leading-relaxed text-slate-ink"
+              class="text-sm leading-relaxed text-body"
             >
               {{ paragraph }}
             </p>

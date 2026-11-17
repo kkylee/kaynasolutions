@@ -34,13 +34,13 @@ onMounted(() => {
           v-for="project in projects"
           :id="project.slug"
           :key="project.slug"
-          class="scroll-mt-24 overflow-hidden rounded-2xl border border-navy/10 bg-white"
+          class="scroll-mt-24 overflow-hidden rounded-2xl border border-line bg-surface"
         >
           <div class="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div class="min-w-0 p-6 sm:p-8 lg:p-10">
               <div class="flex flex-wrap items-center gap-3">
                 <Tag tone="teal" label="Demonstration" data-demo />
-                <span class="text-xs font-semibold uppercase tracking-[0.14em] text-slate-ink">
+                <span class="text-xs font-semibold uppercase tracking-[0.14em] text-body">
                   {{ project.category }}
                 </span>
               </div>
@@ -48,16 +48,16 @@ onMounted(() => {
 
               <div class="mt-6 space-y-5">
                 <div>
-                  <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-ink">
+                  <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-body">
                     The problem
                   </h3>
-                  <p class="mt-2 text-sm leading-relaxed text-slate-ink">{{ project.problem }}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-body">{{ project.problem }}</p>
                 </div>
                 <div>
-                  <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-ink">
+                  <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-body">
                     The concept
                   </h3>
-                  <p class="mt-2 text-sm leading-relaxed text-slate-ink">{{ project.solution }}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-body">{{ project.solution }}</p>
                 </div>
               </div>
 
@@ -65,7 +65,7 @@ onMounted(() => {
                 <li
                   v-for="tool in project.stack"
                   :key="tool"
-                  class="rounded-full bg-paper px-3 py-1 text-xs font-medium text-navy ring-1 ring-inset ring-navy/10"
+                  class="rounded-full bg-subtle px-3 py-1 text-xs font-medium text-ink ring-1 ring-inset ring-line"
                 >
                   {{ tool }}
                 </li>
@@ -73,7 +73,7 @@ onMounted(() => {
             </div>
 
             <div
-              class="min-w-0 border-t border-navy/10 bg-paper p-6 sm:p-8 lg:grid lg:items-center lg:border-l lg:border-t-0 lg:p-10"
+              class="min-w-0 border-t border-line bg-subtle p-6 sm:p-8 lg:grid lg:items-center lg:border-l lg:border-t-0 lg:p-10"
             >
               <component :is="mockFor(project.mockup)" />
             </div>

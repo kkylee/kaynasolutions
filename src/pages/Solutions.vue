@@ -23,13 +23,13 @@ onMounted(() => {
       :image="img('service-integration')"
     />
 
-    <section aria-label="Solution index" class="border-b border-navy/10 bg-paper">
+    <section aria-label="Solution index" class="border-b border-line bg-subtle">
       <div id="solution-index" class="container-page flex flex-wrap gap-2 py-5">
         <a
           v-for="solution in solutions"
           :key="solution.slug"
           :href="`#${solution.slug}`"
-          class="rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-sm text-navy transition-colors hover:border-navy/40"
+          class="rounded-full border border-line-strong bg-surface px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-link"
         >
           {{ solution.title }}
         </a>

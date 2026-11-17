@@ -27,13 +27,13 @@ onMounted(() => {
       <div class="container-page grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-16">
         <div>
           <SectionHeading eyebrow="Why we exist" title="The gap between ambition and systems." />
-          <div class="mt-6 max-w-[62ch] space-y-4 text-base leading-relaxed text-slate-ink">
+          <div class="mt-6 max-w-[62ch] space-y-4 text-base leading-relaxed text-body">
             <p v-for="paragraph in story" :key="paragraph">{{ paragraph }}</p>
           </div>
         </div>
 
-        <aside class="rounded-2xl bg-navy p-7 text-white sm:p-9 lg:mt-6">
-          <p class="h-1 w-10 rounded-full bg-teal" aria-hidden="true" />
+        <aside class="rounded-2xl bg-deep p-7 text-white sm:p-9 lg:mt-6">
+          <p class="h-1 w-10 rounded-full bg-signal-bright" aria-hidden="true" />
           <p class="mt-6 font-display text-2xl leading-snug tracking-tight text-white sm:text-[1.75rem]">
             Big-business capability should not be reserved for big businesses.
           </p>
@@ -44,7 +44,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <section class="border-t border-navy/10 bg-paper py-20 lg:py-28" data-reveal>
+    <section class="border-t border-line bg-subtle py-20 lg:py-28" data-reveal>
       <div class="container-page">
         <SectionHeading
           eyebrow="What we believe"
@@ -56,11 +56,11 @@ onMounted(() => {
             v-for="(belief, index) in beliefs"
             :key="belief.title"
             data-belief
-            class="border-t border-navy/15 pt-5"
+            class="border-t border-line-strong pt-5"
           >
-            <span class="text-xs font-semibold tabular-nums text-blue">0{{ index + 1 }}</span>
+            <span class="text-xs font-semibold tabular-nums text-link">0{{ index + 1 }}</span>
             <h3 class="mt-3 text-lg">{{ belief.title }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-ink">{{ belief.body }}</p>
+            <p class="mt-2 text-sm leading-relaxed text-body">{{ belief.body }}</p>
           </li>
         </ul>
       </div>
@@ -82,20 +82,20 @@ onMounted(() => {
           />
         </div>
 
-        <ul class="border-t border-navy/10">
+        <ul class="border-t border-line">
           <li
             v-for="audience in audiences"
             :key="audience.name"
-            class="grid gap-1 border-b border-navy/10 py-5 sm:grid-cols-[0.85fr_1.15fr] sm:gap-6"
+            class="grid gap-1 border-b border-line py-5 sm:grid-cols-[0.85fr_1.15fr] sm:gap-6"
           >
             <h3 class="text-base">{{ audience.name }}</h3>
-            <p class="text-sm leading-relaxed text-slate-ink">{{ audience.body }}</p>
+            <p class="text-sm leading-relaxed text-body">{{ audience.body }}</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <section class="border-t border-navy/10 bg-paper py-20 lg:py-28" data-reveal>
+    <section class="border-t border-line bg-subtle py-20 lg:py-28" data-reveal>
       <div class="container-page">
         <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <SectionHeading
@@ -108,11 +108,11 @@ onMounted(() => {
               v-for="(measure, index) in measures"
               :key="measure.title"
               data-measure
-              class="border-t-2 border-teal/60 pt-4"
+              class="border-t-2 border-signal/60 pt-4"
             >
-              <span class="text-xs font-semibold tabular-nums text-slate-ink">0{{ index + 1 }}</span>
+              <span class="text-xs font-semibold tabular-nums text-body">0{{ index + 1 }}</span>
               <h3 class="mt-3 text-base leading-snug">{{ measure.title }}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-slate-ink">{{ measure.body }}</p>
+              <p class="mt-2 text-sm leading-relaxed text-body">{{ measure.body }}</p>
             </li>
           </ul>
         </div>

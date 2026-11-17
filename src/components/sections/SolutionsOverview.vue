@@ -18,14 +18,14 @@ import { icon } from '../../lib/icons'
         <li v-for="solution in solutions" :key="solution.slug">
           <a
             :href="`/solutions/#${solution.slug}`"
-            class="group flex h-full items-start justify-between gap-3 rounded-xl border border-navy/10 p-5 transition-colors hover:border-navy/30 hover:bg-paper"
+            class="group flex h-full items-start justify-between gap-3 rounded-xl border border-line p-5 transition-colors hover:border-link hover:bg-subtle"
           >
             <div>
-              <component :is="icon(solution.icon)" class="h-5 w-5 text-teal" aria-hidden="true" />
+              <component :is="icon(solution.icon)" class="h-5 w-5 text-signal" aria-hidden="true" />
               <h3 class="mt-4 text-base leading-snug">{{ solution.title }}</h3>
             </div>
             <ArrowUpRight
-              class="h-4 w-4 flex-none text-navy/30 group-hover:text-blue"
+              class="h-4 w-4 flex-none text-ink/30 group-hover:text-link"
               aria-hidden="true"
             />
           </a>

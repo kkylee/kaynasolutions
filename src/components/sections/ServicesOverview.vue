@@ -16,7 +16,7 @@ import { icon } from '../../lib/icons'
         />
         <a
           href="/services/"
-          class="group inline-flex min-h-6 items-center gap-2 text-sm font-semibold text-navy hover:text-blue"
+          class="group inline-flex min-h-6 items-center gap-2 text-sm font-semibold text-ink hover:text-link"
         >
           All services
           <ArrowUpRight
@@ -26,20 +26,20 @@ import { icon } from '../../lib/icons'
         </a>
       </div>
 
-      <ul class="mt-12 grid border-t border-navy/10 sm:grid-cols-2 sm:gap-x-10">
-        <li v-for="service in services" :key="service.slug" class="border-b border-navy/10">
+      <ul class="mt-12 grid border-t border-line sm:grid-cols-2 sm:gap-x-10">
+        <li v-for="service in services" :key="service.slug" class="border-b border-line">
           <a :href="`/services/#${service.slug}`" class="group flex gap-4 py-6">
             <component
               :is="icon(service.icon)"
-              class="mt-1 h-5 w-5 flex-none text-blue"
+              class="mt-1 h-5 w-5 flex-none text-link"
               aria-hidden="true"
             />
             <div class="flex-1">
-              <h3 class="text-lg group-hover:text-blue">{{ service.title }}</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-slate-ink">{{ service.summary }}</p>
+              <h3 class="text-lg group-hover:text-link">{{ service.title }}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-body">{{ service.summary }}</p>
             </div>
             <ArrowUpRight
-              class="mt-1 h-4 w-4 flex-none text-navy/30 group-hover:text-blue"
+              class="mt-1 h-4 w-4 flex-none text-ink/30 group-hover:text-link"
               aria-hidden="true"
             />
           </a>

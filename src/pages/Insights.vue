@@ -22,8 +22,8 @@ onMounted(() => {
       title="Practical notes on systems, operations, and growth."
       lead="Short articles about the problems we see most often, written for owners and managers rather than technical teams."
     >
-      <p class="measure mt-8 text-sm leading-relaxed text-slate-ink">
-        <span class="font-semibold text-navy">Topics:</span>
+      <p class="measure mt-8 text-sm leading-relaxed text-body">
+        <span class="font-semibold text-ink">Topics:</span>
         {{ topics.join(' · ') }}
       </p>
     </PageHeader>
