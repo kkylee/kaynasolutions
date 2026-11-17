@@ -7,9 +7,9 @@ const props = defineProps({
 })
 
 const tones = {
-  neutral: 'bg-paper text-slate-ink ring-navy/10',
-  navy: 'bg-navy text-white ring-navy',
-  teal: 'bg-teal/10 text-navy ring-teal/40',
+  neutral: 'bg-subtle text-body ring-line',
+  navy: 'bg-deep text-white ring-deep',
+  teal: 'bg-signal/10 text-ink ring-signal/40',
 }
 
 const classes = computed(() => tones[props.tone] ?? tones.neutral)

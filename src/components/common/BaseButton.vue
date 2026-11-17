@@ -15,10 +15,10 @@ const base =
   'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50'
 
 const variants = {
-  primary: 'bg-blue text-white hover:bg-navy',
-  secondary: 'border border-navy/20 text-navy hover:border-navy/60 hover:bg-paper',
-  ghost: 'text-navy underline decoration-blue/40 decoration-2 underline-offset-4 hover:decoration-blue',
-  inverse: 'bg-white text-navy hover:bg-paper',
+  primary: 'bg-action text-white hover:bg-action-hover',
+  secondary: 'border border-line-strong text-ink hover:border-link hover:bg-subtle',
+  ghost: 'text-ink underline decoration-link/40 decoration-2 underline-offset-4 hover:decoration-link',
+  inverse: 'bg-inverse text-inverse-ink hover:bg-inverse/90',
   'ghost-inverse': 'border border-white/30 text-white hover:border-white/70',
 }
 

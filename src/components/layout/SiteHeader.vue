@@ -28,7 +28,7 @@ async function close() {
 </script>
 
 <template>
-  <header class="fixed inset-x-0 top-0 z-40 border-b border-navy/10 bg-white/95 backdrop-blur">
+  <header class="fixed inset-x-0 top-0 z-40 border-b border-line bg-surface/95 backdrop-blur">
     <div class="container-page flex h-16 items-center justify-between gap-4">
       <a href="/" class="flex items-center rounded-md py-1">
         <Wordmark />
@@ -40,7 +40,7 @@ async function close() {
             <a
               :href="item.path"
               :aria-current="active === item.path ? 'page' : undefined"
-              class="rounded-md px-3 py-2 text-sm font-medium text-slate-ink transition-colors hover:text-navy aria-[current=page]:text-navy"
+              class="rounded-md px-3 py-2 text-sm font-medium text-body transition-colors hover:text-ink aria-[current=page]:text-ink"
             >
               {{ item.label }}
             </a>
@@ -56,7 +56,7 @@ async function close() {
         <button
           ref="trigger"
           type="button"
-          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-navy/15 text-navy hover:border-navy/40 lg:hidden"
+          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-line-strong text-ink hover:border-link lg:hidden"
           :aria-expanded="open"
           aria-controls="mobile-nav"
           @click="toggle"

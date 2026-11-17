@@ -10,11 +10,11 @@ defineProps({
 
 <template>
   <div
-    class="flex gap-3 rounded-xl border border-navy/10 bg-paper px-5 py-4 text-sm leading-relaxed text-slate-ink"
+    class="flex gap-3 rounded-xl border border-line bg-subtle px-5 py-4 text-sm leading-relaxed text-body"
   >
-    <Info class="mt-0.5 h-5 w-5 flex-none text-blue" aria-hidden="true" />
+    <Info class="mt-0.5 h-5 w-5 flex-none text-link" aria-hidden="true" />
     <p>
-      <strong v-if="title" class="font-semibold text-navy">{{ title }}. </strong>{{ text }}
+      <strong v-if="title" class="font-semibold text-ink">{{ title }}. </strong>{{ text }}
     </p>
   </div>
 </template>

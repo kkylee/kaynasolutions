@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-  <section class="bg-navy text-white">
+  <section class="bg-deep text-white">
     <div
       class="container-page flex flex-col gap-8 py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20"
     >

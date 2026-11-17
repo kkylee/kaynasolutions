@@ -27,7 +27,7 @@ describe('BaseButton', () => {
 
   it('marks the primary variant by default', () => {
     const wrapper = mount(BaseButton, { props: { label: 'Go', href: '/services/' } })
-    expect(wrapper.get('a').classes().join(' ')).toContain('bg-blue')
+    expect(wrapper.get('a').classes().join(' ')).toContain('bg-action')
   })
 })
 

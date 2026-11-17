@@ -55,14 +55,14 @@ function onKeydown(event) {
 
 <template>
   <div v-if="open" id="mobile-nav" ref="panel" class="lg:hidden" @keydown="onKeydown">
-    <div class="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-navy/10 bg-white">
+    <div class="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-surface">
       <nav aria-label="Mobile" class="container-page py-6">
         <ul class="flex flex-col gap-1">
           <li v-for="item in nav" :key="item.id">
             <a
               :href="item.path"
               :aria-current="active === item.path ? 'page' : undefined"
-              class="flex min-h-11 items-center rounded-md px-3 text-base font-medium text-navy hover:bg-paper aria-[current=page]:text-blue"
+              class="flex min-h-11 items-center rounded-md px-3 text-base font-medium text-ink hover:bg-subtle aria-[current=page]:text-link"
               @click="emit('close')"
             >
               {{ item.label }}

@@ -21,7 +21,7 @@ const ratioClass = computed(() => ratios[props.ratio] ?? ratios['3:2'])
 </script>
 
 <template>
-  <figure :class="['overflow-hidden bg-navy/5', rounded ? 'rounded-2xl' : '']">
+  <figure :class="['overflow-hidden bg-ink/5', rounded ? 'rounded-2xl' : '']">
     <img
       :src="image.src"
       :srcset="image.srcset"
