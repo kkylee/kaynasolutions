@@ -121,7 +121,7 @@ describe('SiteHeader', () => {
 describe('SiteFooter', () => {
   it('shows contact details and the demonstration note', () => {
     const wrapper = mount(SiteFooter)
-    expect(wrapper.text()).toMatch(/demonstration/i)
+    expect(wrapper.find('a[href="/privacy/"]').exists()).toBe(true)
     expect(wrapper.find(`a[href="mailto:${site.email}"]`).exists()).toBe(true)
     expect(wrapper.find(`a[href="tel:${site.phoneHref}"]`).exists()).toBe(true)
     expect(wrapper.find(`a[href="tel:${site.mobileHref}"]`).exists()).toBe(true)
@@ -144,7 +144,7 @@ describe('SiteFooter', () => {
   it('links to every page and every service anchor', () => {
     const wrapper = mount(SiteFooter)
     const hrefs = wrapper.findAll('a').map((link) => link.attributes('href'))
-    for (const path of ['/', '/services/', '/solutions/', '/about/', '/portfolio/', '/insights/', '/contact/']) {
+    for (const path of ['/', '/services/', '/solutions/', '/about/', '/portfolio/', '/insights/', '/contact/', '/privacy/']) {
       expect(hrefs).toContain(path)
     }
     expect(hrefs.filter((href) => href.startsWith('/services/#'))).toHaveLength(7)

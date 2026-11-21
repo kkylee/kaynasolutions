@@ -69,6 +69,16 @@ export const pages = [
       "Tell us about your business and the processes you want to improve. We'll help you explore practical technology options.",
     ogImage: '/og/og-default.png',
   },
+  {
+    id: 'privacy',
+    html: 'privacy/index.html',
+    path: '/privacy/',
+    title: 'Privacy Policy | Kayna IT Solutions',
+    headline: 'Privacy Policy',
+    description:
+      'How Kayna IT Solutions collects, uses, and protects personal information from website visitors and enquiries.',
+    ogImage: '/og/og-default.png',
+  },
 ]
 
 export function pageFor(filename) {

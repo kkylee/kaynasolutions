@@ -91,7 +91,7 @@ const dtiLogo = '/brand/dti-logo.png'
         class="container-page flex flex-col gap-2 py-6 text-xs leading-relaxed text-body sm:flex-row sm:items-center sm:justify-between"
       >
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
-        <p>Demonstration projects and sample articles are illustrative, not real engagements.</p>
+        <a href="/privacy/" class="hover:text-ink hover:underline">Privacy Policy</a>
       </div>
     </div>
   </footer>

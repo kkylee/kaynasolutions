@@ -25,6 +25,7 @@ export default defineConfig({
         portfolio: 'portfolio/index.html',
         insights: 'insights/index.html',
         contact: 'contact/index.html',
+        privacy: 'privacy/index.html',
       },
     },
   },
